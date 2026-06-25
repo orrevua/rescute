@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth/context';
+import { RescuteLogo } from './RescuteLogo';
 
 const links: [string, string][] = [
   ['/cats', 'Cats'],
@@ -23,8 +24,8 @@ export function Navbar() {
   return (
     <header className="border-b-3 border-teal-950 bg-[#f4f7f4] shadow-[0_3px_0_#1a3a38]">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link className="text-2xl font-black text-teal-950 tracking-wide" href="/">
-          🐾 RESCUTE
+        <Link className="flex items-center" href="/">
+          <RescuteLogo height={30} />
         </Link>
         <div className="flex items-center gap-2 text-sm font-extrabold">
           {links.map(([href, label]) => (
