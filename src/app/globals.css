@@ -11,3 +11,39 @@ a,
 summary {
   cursor: pointer;
 }
+
+.paw-trail::before {
+  content: "🐾";
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.12;
+  top: -0.5rem;
+  right: 1rem;
+  transform: rotate(-20deg);
+}
+
+.paw-trail::after {
+  content: "🐾";
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.1;
+  bottom: -0.3rem;
+  left: 1.5rem;
+  transform: rotate(25deg);
+}
+
+.paw-corner::after {
+  content: "🐾 🐾 🐾";
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  opacity: 0.15;
+  letter-spacing: 0.5em;
+}
+
+.cartoon-border {
+  border: 3px solid #1a3a38;
+  border-radius: 1.5rem;
+  box-shadow: 4px 4px 0 #1a3a38;
+}
