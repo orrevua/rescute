@@ -1,0 +1,2 @@
+'use client'; import { DonationPostForm } from '../../../../../components/dashboard/DonationPostForm'; import { ProtectedRoute } from '../../../../../lib/auth/guard';
+export default function NewDonationPage() { return <ProtectedRoute requiredRole="protector"><main className="min-h-screen bg-[#f4f7f4] p-8"><div className="mx-auto max-w-2xl"><h1 className="mb-6 text-3xl font-bold">New campaign</h1><DonationPostForm /></div></main></ProtectedRoute>; }

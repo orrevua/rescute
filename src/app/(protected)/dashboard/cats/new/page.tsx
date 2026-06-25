@@ -1,0 +1,2 @@
+'use client'; import { CatForm } from '../../../../../components/dashboard/CatForm'; import { ProtectedRoute } from '../../../../../lib/auth/guard';
+export default function NewCatPage() { return <ProtectedRoute requiredRole="protector"><main className="min-h-screen bg-[#f4f7f4] p-8"><div className="mx-auto max-w-2xl"><h1 className="mb-6 text-3xl font-bold">Register cat</h1><CatForm /></div></main></ProtectedRoute>; }
