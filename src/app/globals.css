@@ -12,38 +12,85 @@ summary {
   cursor: pointer;
 }
 
-.paw-trail::before {
-  content: "🐾";
-  position: absolute;
-  font-size: 1.5rem;
-  opacity: 0.12;
-  top: -0.5rem;
-  right: 1rem;
-  transform: rotate(-20deg);
+/* ── Cartoon Design System ── */
+
+* {
+  border-color: #1a3a38;
 }
 
-.paw-trail::after {
-  content: "🐾";
-  position: absolute;
-  font-size: 1rem;
-  opacity: 0.1;
-  bottom: -0.3rem;
-  left: 1.5rem;
-  transform: rotate(25deg);
-}
-
-.paw-corner::after {
-  content: "🐾 🐾 🐾";
-  position: absolute;
-  bottom: 0.5rem;
-  right: 1rem;
-  font-size: 0.75rem;
-  opacity: 0.15;
-  letter-spacing: 0.5em;
-}
-
-.cartoon-border {
+/* Cartoon card: thick border + hard offset shadow */
+.cartoon-card {
   border: 3px solid #1a3a38;
   border-radius: 1.5rem;
+  box-shadow: 5px 5px 0 #1a3a38;
+  background: white;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cartoon-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 #1a3a38;
+}
+
+/* Cartoon button: thick border, hard shadow, press effect */
+.cartoon-btn {
+  border: 3px solid #1a3a38;
+  border-radius: 9999px;
   box-shadow: 4px 4px 0 #1a3a38;
+  font-weight: 800;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.cartoon-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 #1a3a38;
+}
+
+.cartoon-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #1a3a38;
+}
+
+/* Cartoon input fields */
+.cartoon-input {
+  border: 2.5px solid #1a3a38;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 0 #1a3a38;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.cartoon-input:focus {
+  outline: none;
+  box-shadow: 5px 5px 0 #0d9488;
+  transform: translate(-1px, -1px);
+}
+
+/* Cartoon section containers */
+.cartoon-section {
+  border: 3px solid #1a3a38;
+  border-radius: 2rem;
+  box-shadow: 6px 6px 0 #1a3a38;
+}
+
+/* Paw print decorative trail */
+.paw-deco::before {
+  content: "🐾";
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.25;
+  top: -1rem;
+  right: 1.5rem;
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+
+.paw-deco::after {
+  content: "🐾";
+  position: absolute;
+  font-size: 1.4rem;
+  opacity: 0.2;
+  bottom: -0.6rem;
+  left: 2rem;
+  transform: rotate(20deg);
+  pointer-events: none;
 }

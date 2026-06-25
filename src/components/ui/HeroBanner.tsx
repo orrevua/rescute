@@ -2,21 +2,22 @@ import Link from 'next/link';
 
 export function HeroBanner() {
   return (
-    <section className="relative overflow-hidden rounded-[2.5rem] border-3 border-teal-950 bg-teal-950 px-8 py-16 text-white shadow-[6px_6px_0_#1a3a38]">
-      <div className="absolute -top-4 -right-4 text-6xl opacity-10 rotate-12">🐾</div>
-      <div className="absolute bottom-6 left-8 text-4xl opacity-10 -rotate-15">🐾</div>
-      <p className="font-bold tracking-[.2em] text-amber-300">A NEW BEGINNING</p>
-      <h1 className="mt-3 max-w-3xl text-5xl font-black">
+    <section className="relative overflow-hidden cartoon-section bg-teal-950 px-10 py-20 text-white">
+      <div className="absolute -top-2 right-8 text-7xl opacity-20 rotate-12 pointer-events-none">🐾</div>
+      <div className="absolute bottom-4 left-6 text-5xl opacity-15 -rotate-20 pointer-events-none">🐾</div>
+      <div className="absolute top-1/2 right-1/4 text-3xl opacity-10 rotate-45 pointer-events-none">🐾</div>
+      <p className="text-sm font-black tracking-[.3em] text-amber-300">A NEW BEGINNING</p>
+      <h1 className="mt-4 max-w-3xl text-5xl font-black leading-tight">
         Every cat deserves a corner of the world to call their own.
       </h1>
-      <p className="mt-5 max-w-xl text-lg text-teal-50">
+      <p className="mt-5 max-w-xl text-lg text-teal-100">
         Meet cats, embrace their stories, and support those who care for them every day.
       </p>
-      <div className="mt-8 flex gap-3">
-        <Link className="rounded-full border-2 border-amber-400 bg-amber-400 px-6 py-3 font-bold text-stone-950 shadow-[3px_3px_0_#1a3a38] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_#1a3a38]" href="/cats">
+      <div className="mt-10 flex gap-4">
+        <Link className="cartoon-btn bg-amber-400 px-7 py-3 text-lg text-stone-950 hover:bg-amber-300" href="/cats">
           I want to adopt 🐾
         </Link>
-        <Link className="rounded-full border-2 border-white px-6 py-3 font-bold shadow-[3px_3px_0_rgba(255,255,255,0.2)] transition hover:bg-white/10" href="/donate">
+        <Link className="cartoon-btn border-white bg-transparent px-7 py-3 text-lg text-white hover:bg-white/10" href="/donate">
           I want to help
         </Link>
       </div>

@@ -54,22 +54,19 @@ export function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Step 1: Role */}
       <fieldset>
-        <legend className="mb-2 text-sm font-medium text-zinc-700">
+        <legend className="mb-2 text-sm font-bold text-stone-700">
           Account type
         </legend>
         <RoleSelect value={role} onChange={setRole} />
       </fieldset>
 
-      {/* Step 2: Credentials */}
       <div className="space-y-4">
         <Input label="Email" type="email" value={email} onChange={setEmail} required />
         <Input label="Password" type="password" value={password} onChange={setPassword} required />
         <Input label="Confirm Password" type="password" value={confirmPassword} onChange={setConfirmPassword} required />
       </div>
 
-      {/* Step 3: Profile fields */}
       {role === 'protector' && (
         <div className="space-y-4">
           <Input label="Organization Name" value={orgName} onChange={setOrgName} required />
@@ -90,13 +87,13 @@ export function RegisterForm() {
       )}
 
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm font-bold text-red-600">{error}</p>
       )}
 
       <button
         type="submit"
         disabled={submitting}
-        className="w-full rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+        className="cartoon-btn w-full bg-teal-800 px-4 py-2.5 text-sm text-white hover:bg-teal-700 disabled:opacity-50"
       >
         {submitting ? 'Creating...' : 'Create Account'}
       </button>
@@ -119,7 +116,7 @@ function Input({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-medium text-zinc-700">
+      <span className="mb-1 block text-sm font-bold text-stone-700">
         {label}
       </span>
       <input
@@ -127,7 +124,7 @@ function Input({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required={required}
-        className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+        className="cartoon-input w-full px-3 py-2 text-sm"
       />
     </label>
   );

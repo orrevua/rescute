@@ -29,7 +29,7 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-zinc-700">
+        <label htmlFor="email" className="block text-sm font-bold text-stone-700">
           Email
         </label>
         <input
@@ -38,12 +38,12 @@ export function LoginForm() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+          className="cartoon-input mt-1 block w-full px-3 py-2 text-sm"
         />
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-zinc-700">
+        <label htmlFor="password" className="block text-sm font-bold text-stone-700">
           Password
         </label>
         <input
@@ -52,16 +52,16 @@ export function LoginForm() {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+          className="cartoon-input mt-1 block w-full px-3 py-2 text-sm"
         />
       </div>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm font-bold text-red-600">{error}</p>}
 
       <button
         type="submit"
         disabled={submitting}
-        className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+        className="cartoon-btn w-full bg-teal-800 px-4 py-2.5 text-sm text-white hover:bg-teal-700 disabled:opacity-50"
       >
         {submitting ? 'Signing in...' : 'Sign In'}
       </button>

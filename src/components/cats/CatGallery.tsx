@@ -11,7 +11,7 @@ export function CatGallery({ photos, name }: { photos: string[]; name: string })
         className="grid min-h-72 place-items-center overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_30%_20%,#f9d9bb_0,transparent_25%),linear-gradient(145deg,#244c49,#7fb9ac)] text-center text-8xl"
         aria-label={`${name}'s gallery`}
       >
-        🐾
+        🐈
       </div>
     );
   }

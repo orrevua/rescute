@@ -21,7 +21,11 @@ export function DashboardNav() {
         const active = pathname === href;
         return (
           <Link
-            className={`cursor-pointer rounded-xl px-3 py-2 text-sm font-bold transition-colors ${active ? 'bg-teal-800 text-white' : 'text-teal-950 hover:bg-teal-100'}`}
+            className={`cartoon-btn px-4 py-2 text-sm ${
+              active
+                ? 'bg-teal-800 text-white'
+                : 'bg-white text-teal-950 hover:bg-teal-50'
+            }`}
             href={href}
             key={href}
           >

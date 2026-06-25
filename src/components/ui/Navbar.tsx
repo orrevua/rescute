@@ -21,18 +21,18 @@ export function Navbar() {
   }
 
   return (
-    <header className="border-b-3 border-teal-950 bg-[#f4f7f4]">
+    <header className="border-b-3 border-teal-950 bg-[#f4f7f4] shadow-[0_3px_0_#1a3a38]">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link className="text-xl font-black text-teal-950 tracking-wider" href="/">
+        <Link className="text-2xl font-black text-teal-950 tracking-wide" href="/">
           🐾 RESCUTE
         </Link>
-        <div className="flex gap-4 text-sm font-bold">
+        <div className="flex items-center gap-2 text-sm font-extrabold">
           {links.map(([href, label]) => (
             <Link
-              className={`rounded-full px-3 py-1 transition-all ${
+              className={`cartoon-btn px-4 py-1.5 ${
                 isActive(href)
-                  ? 'bg-teal-800 text-white shadow-[2px_2px_0_#1a3a38]'
-                  : 'text-stone-700 hover:bg-teal-100 hover:text-teal-800'
+                  ? 'bg-teal-800 text-white'
+                  : 'bg-white text-stone-800 hover:bg-teal-50'
               }`}
               href={href}
               key={href}
@@ -43,24 +43,24 @@ export function Navbar() {
           {user ? (
             <>
               <Link
-                className={`rounded-full px-3 py-1 transition-all ${
+                className={`cartoon-btn px-4 py-1.5 ${
                   isActive('/dashboard') || isActive('/foster')
-                    ? 'bg-teal-800 text-white shadow-[2px_2px_0_#1a3a38]'
-                    : 'text-stone-700 hover:bg-teal-100 hover:text-teal-800'
+                    ? 'bg-teal-800 text-white'
+                    : 'bg-white text-stone-800 hover:bg-teal-50'
                 }`}
                 href={user.role === 'protector' ? '/dashboard' : '/foster/applications'}
               >
                 Profile
               </Link>
               <button
-                className="rounded-full px-3 py-1 text-stone-700 hover:bg-red-100 hover:text-red-700 transition-all"
+                className="cartoon-btn bg-white px-4 py-1.5 text-red-700 hover:bg-red-50"
                 onClick={logout}
               >
                 Sign Out
               </button>
             </>
           ) : (
-            <Link className="rounded-full bg-amber-400 px-3 py-1 font-bold text-stone-950 shadow-[2px_2px_0_#1a3a38] hover:bg-amber-300 transition-all" href="/login">
+            <Link className="cartoon-btn bg-amber-400 px-4 py-1.5 text-stone-950 hover:bg-amber-300" href="/login">
               Sign In
             </Link>
           )}

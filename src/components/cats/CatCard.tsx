@@ -25,7 +25,7 @@ export function CatCard({ cat }: { cat: Cat }) {
         </div>
       ) : (
         <div className="flex h-48 items-center justify-center bg-[radial-gradient(circle_at_35%_30%,#fef3c7_0,transparent_30%),linear-gradient(135deg,#b8d9d0,#e7f0ed)] text-7xl transition duration-300 group-hover:scale-105">
-          🐾
+          🐈
         </div>
       )}
       <div className="space-y-3 p-5">
@@ -39,8 +39,8 @@ export function CatCard({ cat }: { cat: Cat }) {
         <p className="line-clamp-2 text-sm text-stone-600">
           {cat.personality || 'A companion waiting for a home full of love.'}
         </p>
-        <Link className="inline-flex font-semibold text-teal-800 underline-offset-4 hover:underline" href={`/cats/${cat.id}`}>
-          Meet {cat.name} 🐾
+        <Link className="cartoon-btn inline-flex border-2 bg-teal-800 px-4 py-1.5 text-sm text-white hover:bg-teal-700" href={`/cats/${cat.id}`}>
+          Meet {cat.name}
         </Link>
       </div>
     </Card>

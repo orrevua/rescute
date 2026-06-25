@@ -28,14 +28,14 @@ export function RoleSelect({ value, onChange }: RoleSelectProps) {
           key={role.value}
           type="button"
           onClick={() => onChange(role.value)}
-          className={`rounded-lg border-2 p-4 text-left transition-colors ${
+          className={`cartoon-card p-4 text-left ${
             value === role.value
-              ? 'border-zinc-900 bg-zinc-50'
-              : 'border-zinc-200 hover:border-zinc-400'
+              ? 'bg-teal-50 !border-teal-800'
+              : 'hover:bg-stone-50'
           }`}
         >
-          <span className="block font-medium text-zinc-900">{role.label}</span>
-          <span className="mt-1 block text-sm text-zinc-500">
+          <span className="block font-bold text-stone-900">{role.label}</span>
+          <span className="mt-1 block text-sm text-stone-500">
             {role.subtitle}
           </span>
         </button>
