@@ -1,0 +1,1 @@
+import Link from 'next/link'; export function Footer() { return <footer className="mt-auto bg-teal-950 px-6 py-8 text-stone-200"><div className="mx-auto flex max-w-6xl justify-between"><p className="font-bold">RESCUTE · more homes, more purrs</p><Link href="/about">About</Link></div></footer>; }
