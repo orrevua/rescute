@@ -91,7 +91,19 @@ export interface DonationPost {
   type: DonationType;
   target_amount?: number;
   current_amount: number;
+  payment_link?: string | null;
   is_active: boolean;
+  created_at: string;
+}
+
+export interface DonationIntent {
+  id: string;
+  donation_id: string;
+  donor_name: string;
+  donor_email: string;
+  donor_phone: string;
+  amount: number;
+  message?: string | null;
   created_at: string;
 }
 

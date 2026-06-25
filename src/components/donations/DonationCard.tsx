@@ -6,11 +6,12 @@ import { ContributionModal } from './ContributionModal';
 
 export function DonationCard({ donation }: { donation: DonationPost }) {
   const [showModal, setShowModal] = useState(false);
-  const [currentAmount, setCurrentAmount] = useState(donation.current_amount);
 
   const progress = donation.target_amount
-    ? Math.min(100, (currentAmount / donation.target_amount) * 100)
+    ? Math.min(100, (donation.current_amount / donation.target_amount) * 100)
     : 0;
+
+  const hasPaymentLink = !!donation.payment_link;
 
   return (
     <>
@@ -27,17 +28,33 @@ export function DonationCard({ donation }: { donation: DonationPost }) {
               />
             </div>
             <p className="mt-2 text-sm text-stone-600">
-              ${currentAmount.toFixed(2)} of ${donation.target_amount.toFixed(2)}
+              ${donation.current_amount.toFixed(2)} of ${donation.target_amount.toFixed(2)}
             </p>
           </>
         )}
-        <button
-          className="mt-5 rounded-xl bg-teal-800 px-4 py-2 font-semibold text-white hover:bg-teal-700"
-          onClick={() => setShowModal(true)}
-          type="button"
-        >
-          I want to contribute
-        </button>
+        <div className="mt-5 flex flex-wrap gap-3">
+          {hasPaymentLink ? (
+            <a
+              className="inline-block rounded-xl bg-teal-800 px-4 py-2 font-semibold text-white hover:bg-teal-700"
+              href={donation.payment_link!}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Donate now ↗
+            </a>
+          ) : (
+            <button
+              className="rounded-xl bg-teal-800 px-4 py-2 font-semibold text-white hover:bg-teal-700"
+              onClick={() => setShowModal(true)}
+              type="button"
+            >
+              I want to contribute
+            </button>
+          )}
+        </div>
+        {hasPaymentLink && (
+          <p className="mt-2 text-xs text-stone-400">Opens external payment page</p>
+        )}
       </article>
 
       {showModal && (
@@ -45,7 +62,6 @@ export function DonationCard({ donation }: { donation: DonationPost }) {
           donationId={donation.id}
           campaignTitle={donation.title}
           onClose={() => setShowModal(false)}
-          onSuccess={(newTotal) => setCurrentAmount(newTotal)}
         />
       )}
     </>

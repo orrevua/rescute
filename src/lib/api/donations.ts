@@ -1,5 +1,5 @@
 import api from './client';
-import type { DonationPost, DonationType } from '../types';
+import type { DonationIntent, DonationPost, DonationType } from '../types';
 
 export async function getDonations(type?: DonationType): Promise<DonationPost[]> {
   const { data } = await api.get<DonationPost[]>('/donations', { params: { type } });
@@ -34,4 +34,28 @@ export async function contribute(
     data,
   );
   return response;
+}
+
+export interface IntentData {
+  donor_name: string;
+  donor_email: string;
+  donor_phone: string;
+  amount: number;
+  message?: string;
+}
+
+export async function submitIntent(
+  donationId: string,
+  data: IntentData,
+): Promise<DonationIntent> {
+  const { data: response } = await api.post<DonationIntent>(
+    `/donations/${donationId}/intent`,
+    data,
+  );
+  return response;
+}
+
+export async function getIntents(): Promise<DonationIntent[]> {
+  const { data } = await api.get<DonationIntent[]>('/donations/intents');
+  return data;
 }

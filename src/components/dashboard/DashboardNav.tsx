@@ -9,6 +9,7 @@ const items: [string, string][] = [
   ['/dashboard/cats/new', 'Register cat'],
   ['/dashboard/applications', 'Applications'],
   ['/dashboard/donations', 'Donations'],
+  ['/dashboard/intents', 'Intents'],
 ];
 
 export function DashboardNav() {

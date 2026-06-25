@@ -1,17 +1,16 @@
 'use client';
 
 import { type FormEvent, type InputHTMLAttributes, useState } from 'react';
-import { contribute } from '../../lib/api/donations';
+import { submitIntent } from '../../lib/api/donations';
 import { Modal } from '../ui/Modal';
 
 interface Props {
   donationId: string;
   campaignTitle: string;
   onClose: () => void;
-  onSuccess: (newTotal: number) => void;
 }
 
-export function ContributionModal({ donationId, campaignTitle, onClose, onSuccess }: Props) {
+export function ContributionModal({ donationId, campaignTitle, onClose }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<'error' | 'success' | null>(null);
   const [amount, setAmount] = useState('');
@@ -22,14 +21,14 @@ export function ContributionModal({ donationId, campaignTitle, onClose, onSucces
     setSubmitting(true);
     setResult(null);
     try {
-      const res = await contribute(donationId, {
+      await submitIntent(donationId, {
         donor_name: String(data.get('name')),
         donor_email: String(data.get('email')),
+        donor_phone: String(data.get('phone')),
         amount: parseFloat(amount),
         message: String(data.get('message') || '') || undefined,
       });
       setResult('success');
-      onSuccess(res.new_total);
     } catch {
       setResult('error');
     } finally {
@@ -42,8 +41,8 @@ export function ContributionModal({ donationId, campaignTitle, onClose, onSucces
       {result === 'success' ? (
         <div className="space-y-4">
           <p className="leading-7 text-stone-700">
-            Thank you for your contribution of <span className="font-bold text-teal-800">${parseFloat(amount).toFixed(2)}</span>!
-            The protector will be notified.
+            Your interest to contribute <span className="font-bold text-teal-800">${parseFloat(amount).toFixed(2)}</span> has been submitted!
+            The protector will reach out to arrange payment.
           </p>
           <button
             className="rounded-xl bg-teal-800 px-4 py-2 font-semibold text-white"
@@ -56,10 +55,11 @@ export function ContributionModal({ donationId, campaignTitle, onClose, onSucces
       ) : (
         <form className="space-y-4" onSubmit={handleSubmit}>
           <p className="text-sm leading-6 text-stone-600">
-            Your contribution helps provide food, medical care, and shelter for rescued cats.
+            This campaign doesn't have a direct payment link yet. Leave your contact info and the protector will reach out to arrange the donation.
           </p>
           <Input label="Your name" name="name" required />
           <Input label="Email" name="email" type="email" required />
+          <Input label="Phone" name="phone" type="tel" required />
           <label className="block text-sm font-semibold text-stone-700">
             Amount ($)
             <input
@@ -84,7 +84,7 @@ export function ContributionModal({ donationId, campaignTitle, onClose, onSucces
           </label>
           {result === 'error' && (
             <p className="rounded-xl bg-red-50 p-3 text-sm text-red-800">
-              Unable to process your contribution. Please try again.
+              Unable to submit. Please try again.
             </p>
           )}
           <button
@@ -92,7 +92,7 @@ export function ContributionModal({ donationId, campaignTitle, onClose, onSucces
             disabled={submitting || !amount}
             type="submit"
           >
-            {submitting ? 'Processing...' : `Contribute $${amount ? parseFloat(amount).toFixed(2) : '0.00'}`}
+            {submitting ? 'Submitting...' : 'Submit interest to donate'}
           </button>
         </form>
       )}
