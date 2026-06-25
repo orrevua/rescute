@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
-import { AuthProvider } from '../lib/auth/context';
-import { Footer } from '../components/ui/Footer';
-import { Navbar } from '../components/ui/Navbar';
+import { AuthProvider } from '@/lib/auth/context';
+import { Footer } from '@/components/ui/Footer';
+import { Navbar } from '@/components/ui/Navbar';
 import './globals.css';
 const geist = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 export const metadata: Metadata = { title: 'Rescute', description: 'Cat adoption platform' };
