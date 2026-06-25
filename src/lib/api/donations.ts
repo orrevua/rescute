@@ -11,6 +11,18 @@ export async function createDonation(data: Record<string, unknown>): Promise<Don
   return response;
 }
 
+export async function updateDonation(id: string, data: Record<string, unknown>): Promise<DonationPost> {
+  const { data: response } = await api.patch<DonationPost>(`/donations/${id}`, data);
+  return response;
+}
+
+export async function getDonation(id: string): Promise<DonationPost> {
+  const { data } = await api.get<DonationPost[]>('/donations');
+  const found = data.find((d) => d.id === id);
+  if (!found) throw new Error('Not found');
+  return found;
+}
+
 export interface ContributionData {
   donor_name: string;
   donor_email: string;
