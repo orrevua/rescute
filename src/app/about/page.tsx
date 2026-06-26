@@ -15,7 +15,7 @@ export default function AboutPage() {
           </p>
           <p>
             You can meet cats for adoption, offer a foster home, support
-            campaigns, or find partners who strengthen the local network.
+            campaigns, or find purrtners who strengthen the local network.
           </p>
           <p>
             Our commitment is simple: clear information, responsible care, and

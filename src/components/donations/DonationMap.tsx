@@ -44,8 +44,8 @@ export function DonationMap({ cep }: { cep: string }) {
       <div className="mt-5 rounded-2xl border border-dashed border-teal-700 bg-teal-50 p-6">
         <p className="font-bold text-teal-950">Nearby drop-off points{cep ? ` near ${cep}` : ''}</p>
         <p className="mt-2 text-sm text-teal-900">
-          No partner locations found{cep ? ' in your area' : ' yet'}. Check the{' '}
-          <a href="/partners" className="font-semibold underline">partners page</a> for the full list.
+          No purrtner locations found{cep ? ' in your area' : ' yet'}. Check the{' '}
+          <a href="/partners" className="font-semibold underline">purrtners page</a> for the full list.
         </p>
       </div>
     );
