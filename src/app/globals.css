@@ -104,16 +104,25 @@ summary {
 /* ── Health badges: right side of card ── */
 
 .card-badges {
-  position: absolute;
-  left: 100%;
-  top: 0.75rem;
-  margin-left: 0.5rem;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.35rem;
+  padding: 0.5rem 1rem 0.75rem;
   z-index: 20;
   pointer-events: none;
   opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .card-badges {
+    position: absolute;
+    left: 100%;
+    top: 0.75rem;
+    margin-left: 0.5rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0;
+  }
 }
 
 .cat-card-wrapper:hover .card-badges {

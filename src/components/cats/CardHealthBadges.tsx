@@ -6,8 +6,8 @@ const BADGES: { label: string; field: (c: Cat) => boolean }[] = [
   { label: 'Neutered', field: (c) => c.castrated },
   { label: 'Vaccinated', field: (c) => c.vaccinated },
   { label: 'Dewormed', field: (c) => c.dewormed },
-  { label: 'FIV-', field: (c) => !c.fiv_status },
-  { label: 'FeLV-', field: (c) => !c.felv_status },
+  { label: 'FIV-', field: (c) => c.fiv_status },
+  { label: 'FeLV-', field: (c) => c.felv_status },
 ];
 
 function DropSvg() {

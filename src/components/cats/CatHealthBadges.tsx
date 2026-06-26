@@ -6,8 +6,8 @@ export function CatHealthBadges({ cat }: { cat: Cat }) {
     ['Neutered', cat.castrated],
     ['Vaccinated', cat.vaccinated],
     ['Dewormed', cat.dewormed],
-    ['FIV-', !cat.fiv_status],
-    ['FeLV-', !cat.felv_status],
+    ['FIV-', cat.fiv_status],
+    ['FeLV-', cat.felv_status],
   ];
 
   return (
