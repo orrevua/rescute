@@ -22,13 +22,13 @@ export default function ApplicationsPage() {
 
   return (
     <ProtectedRoute requiredRole="protector">
-      <main className="min-h-screen bg-[#f4f7f4] px-6 py-10">
+      <div className="min-h-screen px-6 py-10">
         <div className="mx-auto max-w-6xl">
           <Link className="cursor-pointer text-sm font-semibold text-teal-700 hover:underline" href="/dashboard">
             ← Back to dashboard
           </Link>
           <h1 className="mt-4 text-3xl font-bold text-stone-900">Received applications</h1>
-          <div className="mt-6 rounded-2xl bg-white p-3 shadow-sm">
+          <div className="cartoon-section mt-6 bg-[#f0fdf8] p-4">
             <DashboardNav />
           </div>
           <div className="mt-8 space-y-6">
@@ -36,7 +36,7 @@ export default function ApplicationsPage() {
             <ApplicationList applications={fosters} title="Foster homes" />
           </div>
         </div>
-      </main>
+      </div>
     </ProtectedRoute>
   );
 }

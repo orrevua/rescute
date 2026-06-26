@@ -15,12 +15,12 @@ function ApplicationCard({ application }: { application: Application }) {
 
   return (
     <article
-      className="cursor-pointer rounded-xl border border-stone-100 p-4 transition-colors hover:bg-stone-50"
+      className="cartoon-card cursor-pointer bg-white p-4 transition-colors hover:bg-stone-50"
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="font-semibold">
+          <p className="font-semibold text-stone-900">
             {isAdoption(application) ? application.applicant_name : 'Foster home candidate'}
           </p>
           <p className="text-sm text-stone-500">
@@ -33,12 +33,12 @@ function ApplicationCard({ application }: { application: Application }) {
         </div>
         <div className="flex items-center gap-2">
           <ApplicationStatus status={application.status} />
-          <span className="text-stone-400 text-sm">{expanded ? '▲' : '▼'}</span>
+          <span className="text-sm text-stone-400">{expanded ? '▲' : '▼'}</span>
         </div>
       </div>
 
       {expanded && (
-        <div className="mt-3 space-y-1 border-t border-stone-100 pt-3 text-sm text-stone-600">
+        <div className="mt-3 space-y-1 border-t-2 border-teal-950 pt-3 text-sm text-stone-600">
           {isAdoption(application) ? (
             <>
               <p><span className="font-medium text-stone-700">Email:</span> {application.applicant_email}</p>
@@ -64,9 +64,9 @@ function ApplicationCard({ application }: { application: Application }) {
 
 export function ApplicationList({ title, applications }: { title: string; applications: Application[] }) {
   return (
-    <section className="rounded-3xl bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-bold">{title}</h2>
-      <div className="mt-4 space-y-3">
+    <section className="cartoon-section bg-[#f0fdf8] p-6">
+      <h2 className="text-xl font-bold text-stone-900">{title}</h2>
+      <div className="mt-4 space-y-4">
         {applications.map((application) => (
           <ApplicationCard application={application} key={application.id} />
         ))}

@@ -16,7 +16,7 @@ export default function IntentsPage() {
 
   return (
     <ProtectedRoute requiredRole="protector">
-      <main className="min-h-screen bg-[#f4f7f4] px-6 py-10">
+      <div className="min-h-screen px-6 py-10">
         <div className="mx-auto max-w-6xl">
           <Link className="text-sm font-semibold text-teal-700 hover:underline" href="/dashboard">
             ← Back to dashboard
@@ -25,25 +25,25 @@ export default function IntentsPage() {
           <p className="mt-2 text-stone-600">
             People who expressed interest in donating to your campaigns. Reach out to arrange payment.
           </p>
-          <div className="mt-6 rounded-2xl bg-white p-3 shadow-sm">
+          <div className="cartoon-section mt-6 bg-[#f0fdf8] p-4">
             <DashboardNav />
           </div>
-          <div className="mt-8 space-y-3">
+          <div className="mt-8 space-y-4">
             {intents.map((intent) => (
-              <article className="rounded-2xl bg-white p-5 shadow-sm" key={intent.id}>
+              <article className="cartoon-card bg-white p-5" key={intent.id}>
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="font-bold text-stone-900">{intent.donor_name}</p>
                     <p className="text-sm text-stone-600">{intent.donor_email} · {intent.donor_phone}</p>
                   </div>
-                  <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-900">
+                  <span className="inline-flex items-center rounded-full border-2 border-teal-950 bg-amber-100 px-3 py-1 text-sm font-extrabold text-amber-900 shadow-[2px_2px_0_#1a3a38]">
                     ${intent.amount.toFixed(2)}
                   </span>
                 </div>
                 {intent.message && (
-                  <p className="mt-2 text-sm text-stone-500 italic">"{intent.message}"</p>
+                  <p className="mt-2 text-sm italic text-stone-500">"{intent.message}"</p>
                 )}
-                <p className="mt-2 text-xs text-stone-400">
+                <p className="mt-2 text-xs font-semibold text-stone-400">
                   {new Date(intent.created_at).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'short',
@@ -53,11 +53,11 @@ export default function IntentsPage() {
               </article>
             ))}
             {intents.length === 0 && (
-              <p className="rounded-2xl bg-white p-6 text-stone-600">No donation intents yet.</p>
+              <p className="cartoon-card bg-white p-6 text-stone-600">No donation intents yet.</p>
             )}
           </div>
         </div>
-      </main>
+      </div>
     </ProtectedRoute>
   );
 }

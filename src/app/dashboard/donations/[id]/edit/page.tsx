@@ -33,7 +33,7 @@ export default function EditDonationPage({ params }: { params: Promise<{ id: str
 
   return (
     <ProtectedRoute requiredRole="protector">
-      <main className="min-h-screen bg-[#f4f7f4] px-6 py-10">
+      <div className="min-h-screen px-6 py-10">
         <div className="mx-auto max-w-2xl">
           <Link className="text-sm font-semibold text-teal-700 hover:underline" href="/dashboard/donations">
             ← Back to campaigns
@@ -77,7 +77,7 @@ export default function EditDonationPage({ params }: { params: Promise<{ id: str
             </button>
           </form>
         </div>
-      </main>
+      </div>
     </ProtectedRoute>
   );
 }
