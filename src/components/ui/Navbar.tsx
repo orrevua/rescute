@@ -22,7 +22,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="border-b-3 border-teal-950 bg-[#f4f7f4] shadow-[0_3px_0_#1a3a38]">
+    <header className="border-b-3 border-teal-950 bg-[#f5f0e1] shadow-[0_3px_0_#1a3a38]">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link className="flex items-center" href="/">
           <RescuteLogo height={30} />

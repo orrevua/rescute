@@ -9,6 +9,7 @@ interface ActionCardProps {
   imagePosition?: string;
   imageOnRight?: boolean;
   size?: 'large' | 'pill';
+  clean?: boolean;
 }
 
 export function ActionCard({
@@ -18,86 +19,41 @@ export function ActionCard({
   imagePosition = 'center',
   imageOnRight = false,
   size = 'large',
+  clean = false,
 }: ActionCardProps) {
   if (size === 'pill') {
     return (
       <Link
         href={href}
-        className="group relative flex h-20 overflow-hidden rounded-2xl border-3 border-teal-950 shadow-[4px_4px_0_#1a3a38] transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_#1a3a38]"
+        className="group relative flex h-20 items-center justify-center overflow-hidden rounded-2xl bg-[#3d6a4b] shadow-[0_0_0_3px_#1a3a38,4px_4px_0_#1a3a38] transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:bg-[#4a7c59] hover:shadow-[0_0_0_3px_#1a3a38,6px_6px_0_#1a3a38]"
       >
-        {imageOnRight ? (
-          <>
-            {/* Green area with label on left */}
-            <div className="relative z-10 flex flex-1 items-center overflow-hidden bg-[#4a7c59] pl-6">
-              <PawIcon className="absolute -bottom-5 -left-5 text-[#3d6a4b] opacity-40" size={80} style={{ transform: 'rotate(45deg)' }} />
-              <span className="relative z-10 text-lg font-black text-white drop-shadow-sm">{label}</span>
-            </div>
-            {/* Image on right with gradient fade */}
-            <div className="relative w-2/5 flex-shrink-0">
-              <Image
-                src={image}
-                alt=""
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                style={{ objectPosition: imagePosition }}
-                aria-hidden="true"
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(to right, #4a7c59 0%, transparent 50%)',
-                }}
-              />
-            </div>
-          </>
-        ) : (
-          <>
-            {/* Image on left with gradient fade */}
-            <div className="relative w-2/5 flex-shrink-0">
-              <Image
-                src={image}
-                alt=""
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                style={{ objectPosition: imagePosition }}
-                aria-hidden="true"
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(to left, #4a7c59 0%, transparent 50%)',
-                }}
-              />
-            </div>
-            {/* Green area with label on right */}
-            <div className="relative z-10 flex flex-1 items-center justify-end overflow-hidden bg-[#4a7c59] pr-6">
-              <PawIcon className="absolute -bottom-5 -right-5 text-[#3d6a4b] opacity-40" size={80} style={{ transform: 'rotate(-45deg)' }} />
-              <span className="relative z-10 text-lg font-black text-white drop-shadow-sm">{label}</span>
-            </div>
-          </>
-        )}
+        <PawIcon className="absolute -bottom-5 -right-5 text-[#2d5a3e] opacity-40" size={80} style={{ transform: 'rotate(-45deg)' }} />
+        <span className="relative z-10 text-lg font-black text-white drop-shadow-sm">{label}</span>
       </Link>
     );
   }
 
   return (
-    <Link href={href} className="group relative block h-56 overflow-hidden cartoon-card">
+    <Link href={href} className="group relative block h-56 overflow-hidden rounded-3xl bg-[#1a3a38] shadow-[0_0_0_3px_#1a3a38,5px_5px_0_#1a3a38] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[0_0_0_3px_#1a3a38,7px_7px_0_#1a3a38]">
       <Image
         src={image}
         alt=""
         fill
+        sizes="(max-width: 768px) 100vw, 50vw"
         className="object-cover transition-transform duration-500 group-hover:scale-110"
         style={{ objectPosition: imagePosition }}
         aria-hidden="true"
       />
-      <div
-        className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-90"
-        style={{
-          background:
-            'linear-gradient(to right, transparent 0%, transparent 25%, rgba(26,58,56,0.6) 50%, rgba(26,58,56,0.95) 75%, #1a3a38 100%)',
-        }}
-      />
-      <PawIcon className="absolute right-16 bottom-4 text-[#152e2c] opacity-25" size={80} />
+      {!clean && (
+        <div
+          className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-90"
+          style={{
+            background:
+              'linear-gradient(to right, transparent 0%, transparent 25%, rgba(26,58,56,0.6) 50%, rgba(26,58,56,0.95) 75%, #1a3a38 100%)',
+          }}
+        />
+      )}
+      {!clean && <PawIcon className="absolute right-16 bottom-4 text-[#152e2c] opacity-25" size={80} />}
       <div className="absolute inset-0 flex items-center justify-end pr-8">
         <span className="text-2xl font-black text-white drop-shadow-lg transition-transform duration-300 group-hover:translate-x-1">
           {label}

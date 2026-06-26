@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { resolvePhotoUrl } from '@/lib/api/client';
 
 export function CatGallery({ photos, name }: { photos: string[]; name: string }) {
   const [selected, setSelected] = useState(0);
@@ -21,7 +22,7 @@ export function CatGallery({ photos, name }: { photos: string[]; name: string })
     <div aria-label={`${name}'s gallery`}>
       <div className="relative h-80 overflow-hidden rounded-[2rem]">
         <Image
-          src={photos[selected]}
+          src={resolvePhotoUrl(photos[selected])}
           alt={`${name} photo ${selected + 1}`}
           fill
           className="object-cover"
@@ -38,7 +39,7 @@ export function CatGallery({ photos, name }: { photos: string[]; name: string })
                 i === selected ? 'border-teal-700' : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
-              <Image src={photo} alt={`${name} thumbnail ${i + 1}`} fill className="object-cover" />
+              <Image src={resolvePhotoUrl(photo)} alt={`${name} thumbnail ${i + 1}`} fill className="object-cover" />
             </button>
           ))}
         </div>

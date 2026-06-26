@@ -7,6 +7,7 @@ export function HeroBanner() {
         src="/hero-kittens.jpg"
         alt=""
         fill
+        sizes="100vw"
         className="object-cover"
         priority
         aria-hidden="true"
@@ -21,7 +22,7 @@ export function HeroBanner() {
       <div
         className="absolute inset-x-0 bottom-0 h-32"
         style={{
-          background: 'linear-gradient(to top, #f4f7f4 0%, transparent 100%)',
+          background: 'linear-gradient(to top, #f5f0e1 0%, transparent 100%)',
         }}
       />
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col justify-center px-8 py-24" style={{ minHeight: '520px' }}>

@@ -27,4 +27,11 @@ api.interceptors.response.use(
   },
 );
 
+const API_ORIGIN = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/api\/v1$/, '');
+
+export function resolvePhotoUrl(url: string): string {
+  if (url.startsWith('/uploads/')) return `${API_ORIGIN}${url}`;
+  return url;
+}
+
 export default api;

@@ -1,24 +1,38 @@
 'use client';
 
-import { type FormEvent, useState } from 'react';
-import { createCat, updateCat } from '@/lib/api/cats';
+import { type FormEvent, useRef, useState } from 'react';
+import { createCat, updateCat, uploadPhoto } from '@/lib/api/cats';
 import type { Cat } from '@/lib/types';
+
+interface PhotoEntry {
+  url: string;
+  preview?: string;
+  file?: File;
+}
 
 export function CatForm({ cat }: { cat?: Cat }) {
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
-  const [photoUrls, setPhotoUrls] = useState<string[]>(cat?.photos ?? ['']);
+  const [photos, setPhotos] = useState<PhotoEntry[]>(
+    cat?.photos?.length ? cat.photos.map((url) => ({ url })) : [],
+  );
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  function addPhotoField() {
-    setPhotoUrls((prev) => [...prev, '']);
+  function addFiles(files: FileList) {
+    const entries: PhotoEntry[] = Array.from(files).map((file) => ({
+      url: '',
+      preview: URL.createObjectURL(file),
+      file,
+    }));
+    setPhotos((prev) => [...prev, ...entries]);
   }
 
-  function removePhotoField(index: number) {
-    setPhotoUrls((prev) => prev.filter((_, i) => i !== index));
-  }
-
-  function updatePhotoUrl(index: number, value: string) {
-    setPhotoUrls((prev) => prev.map((url, i) => (i === index ? value : url)));
+  function removePhoto(index: number) {
+    setPhotos((prev) => {
+      const removed = prev[index];
+      if (removed.preview) URL.revokeObjectURL(removed.preview);
+      return prev.filter((_, i) => i !== index);
+    });
   }
 
   async function submit(e: FormEvent<HTMLFormElement>) {
@@ -26,7 +40,15 @@ export function CatForm({ cat }: { cat?: Cat }) {
     const f = new FormData(e.currentTarget);
     setSaving(true);
     try {
-      const photos = photoUrls.map((u) => u.trim()).filter(Boolean);
+      const uploadedUrls: string[] = [];
+      for (const photo of photos) {
+        if (photo.file) {
+          const url = await uploadPhoto(photo.file);
+          uploadedUrls.push(url);
+        } else if (photo.url) {
+          uploadedUrls.push(photo.url);
+        }
+      }
       const data = {
         name: f.get('name'),
         age_months: Number(f.get('age')),
@@ -41,7 +63,7 @@ export function CatForm({ cat }: { cat?: Cat }) {
         dewormed: f.get('dewormed') === 'on',
         personality: f.get('personality') || undefined,
         backstory: f.get('backstory') || undefined,
-        photos,
+        photos: uploadedUrls,
       };
       if (cat) await updateCat(cat.id, data);
       else await createCat(data);
@@ -68,25 +90,41 @@ export function CatForm({ cat }: { cat?: Cat }) {
       <textarea className="w-full rounded-xl border p-3" defaultValue={cat?.backstory} name="backstory" placeholder="Backstory (optional)" rows={3} />
 
       <div>
-        <p className="mb-2 text-sm font-semibold text-stone-700">Photos (paste image URLs)</p>
-        {photoUrls.map((url, i) => (
-          <div key={i} className="mb-2 flex gap-2">
-            <input
-              className="min-w-0 flex-1 rounded-xl border p-3"
-              value={url}
-              onChange={(e) => updatePhotoUrl(i, e.target.value)}
-              placeholder="https://example.com/cat-photo.jpg"
-              type="url"
-            />
-            {photoUrls.length > 1 && (
-              <button type="button" className="rounded-xl bg-red-100 px-3 text-red-700 font-bold" onClick={() => removePhotoField(i)}>
-                ✕
-              </button>
-            )}
+        <p className="mb-2 text-sm font-semibold text-stone-700">Photos</p>
+        {photos.length > 0 && (
+          <div className="mb-3 flex flex-wrap gap-3">
+            {photos.map((photo, i) => (
+              <div key={i} className="relative h-24 w-24 overflow-hidden rounded-xl border-2 border-stone-300">
+                <img
+                  src={photo.preview || photo.url}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+                <button
+                  type="button"
+                  className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white"
+                  onClick={() => removePhoto(i)}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-        <button type="button" className="text-sm font-semibold text-teal-700 hover:underline" onClick={addPhotoField}>
-          + Add another photo
+        )}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          className="hidden"
+          onChange={(e) => { if (e.target.files?.length) addFiles(e.target.files); e.target.value = ''; }}
+        />
+        <button
+          type="button"
+          className="rounded-xl border-2 border-dashed border-teal-700 px-4 py-2 text-sm font-semibold text-teal-700 hover:bg-teal-50"
+          onClick={() => fileInputRef.current?.click()}
+        >
+          + Add photos
         </button>
       </div>
 

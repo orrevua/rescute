@@ -36,10 +36,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (token) {
       getMeApi()
         .then(setUser)
-        .catch(() => clearTokens())
+        .catch(() => {
+          clearTokens();
+          window.location.replace('/login');
+        })
         .finally(() => setLoading(false));
     } else {
-      queueMicrotask(() => setLoading(false));
+      clearTokens();
+      setLoading(false);
     }
   }, []);
 

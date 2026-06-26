@@ -44,7 +44,7 @@ export function RegisterForm() {
     setSubmitting(true);
     try {
       await register(email, password, role, profileData);
-      router.push(role === 'protector' ? '/dashboard' : '/');
+      router.replace(role === 'protector' ? '/dashboard' : '/');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error creating account.');
     } finally {

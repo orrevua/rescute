@@ -31,7 +31,7 @@ export function RoleSelect({ value, onChange }: RoleSelectProps) {
           className={`cartoon-card p-4 text-left ${
             value === role.value
               ? 'bg-teal-50 !border-teal-800'
-              : 'hover:bg-stone-50'
+              : 'bg-white hover:bg-stone-50'
           }`}
         >
           <span className="block font-bold text-stone-900">{role.label}</span>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { RescuteLogo } from './RescuteLogo';
+import { PawIcon } from './PawIcon';
 
 export function Footer() {
   return (
@@ -13,8 +14,10 @@ export function Footer() {
           About
         </Link>
       </div>
-      <div className="mt-4 text-center text-2xl opacity-20 tracking-[1.5em]">
-        🐾🐾🐾🐾🐾
+      <div className="mt-4 flex justify-center gap-6 opacity-20">
+        {[...Array(5)].map((_, i) => (
+          <PawIcon key={i} size={24} className="text-stone-300" style={{ transform: `rotate(${-15 + i * 8}deg)` }} />
+        ))}
       </div>
     </footer>
   );

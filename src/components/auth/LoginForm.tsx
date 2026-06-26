@@ -18,10 +18,9 @@ export function LoginForm() {
     setSubmitting(true);
     try {
       await login(email, password);
-      router.push('/');
+      router.replace('/dashboard');
     } catch {
       setError('Incorrect email or password.');
-    } finally {
       setSubmitting(false);
     }
   }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { DonationPost } from '@/lib/types';
 import { ContributionModal } from './ContributionModal';
+import { PawIcon } from '@/components/ui/PawIcon';
 
 export function DonationCard({ donation }: { donation: DonationPost }) {
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +16,9 @@ export function DonationCard({ donation }: { donation: DonationPost }) {
 
   return (
     <>
-      <article className="relative cartoon-card p-6 paw-deco">
+      <article className="relative cartoon-card bg-white p-6 overflow-hidden">
+        <PawIcon size={52} className="absolute top-2 right-3 text-teal-800 opacity-20 pointer-events-none" style={{ transform: 'rotate(-25deg)' }} />
+        <PawIcon size={36} className="absolute bottom-3 left-4 text-teal-800 opacity-15 pointer-events-none" style={{ transform: 'rotate(18deg)' }} />
         <p className="text-sm font-black tracking-widest text-teal-700">FINANCIAL SUPPORT</p>
         <h2 className="mt-2 text-2xl font-bold text-stone-900">{donation.title}</h2>
         <p className="mt-2 text-stone-600">{donation.description}</p>
