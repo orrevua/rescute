@@ -7,26 +7,35 @@ export default function Home() {
       <HeroBanner />
 
       <div className="mx-auto max-w-6xl px-6 -mt-8 relative z-10">
-        {/* Action cards */}
-        <section className="grid gap-6 md:grid-cols-3">
+        {/* Main action: adopt — large card */}
+        <section className="grid gap-6 md:grid-cols-[1fr_auto]">
           <ActionCard
             href="/cats"
             label="I want to adopt"
             image="/hero-kittens.jpg"
             imagePosition="center 40%"
+            size="large"
           />
-          <ActionCard
-            href="/donate"
-            label="Make a donation"
-            image="/hero-kittens.jpg"
-            imagePosition="left center"
-          />
-          <ActionCard
-            href="/foster/apply"
-            label="Be a foster home"
-            image="/hero-kittens.jpg"
-            imagePosition="right center"
-          />
+
+          {/* Side buttons: pill-shaped like reference */}
+          <div className="flex flex-col gap-4 md:w-80">
+            <ActionCard
+              href="/foster/apply"
+              label="Be a foster home"
+              image="/hero-kittens.jpg"
+              imagePosition="left center"
+              size="pill"
+              imageOnRight={false}
+            />
+            <ActionCard
+              href="/donate"
+              label="Make a donation"
+              image="/hero-kittens.jpg"
+              imagePosition="right bottom"
+              size="pill"
+              imageOnRight={true}
+            />
+          </div>
         </section>
 
         {/* About section */}
@@ -64,12 +73,14 @@ export default function Home() {
             label="Meet our cats"
             image="/hero-kittens.jpg"
             imagePosition="center 30%"
+            size="large"
           />
           <ActionCard
             href="/partners"
             label="Our partners"
             image="/hero-kittens.jpg"
             imagePosition="center 60%"
+            size="large"
           />
         </section>
       </div>
