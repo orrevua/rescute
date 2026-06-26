@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Cat } from '@/lib/types';
 import { Badge } from '@/components/ui/Badge';
@@ -12,10 +13,11 @@ export function CatCard({ cat }: { cat: Cat }) {
     <Card className="group overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-lg">
       {cat.photos.length > 0 ? (
         <div className="relative h-48 overflow-hidden">
-          <img
+          <Image
             src={cat.photos[0]}
             alt={cat.name}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            fill
+            className="object-cover transition duration-300 group-hover:scale-105"
           />
           {cat.photos.length > 1 && (
             <span className="absolute bottom-2 right-2 rounded-full bg-black/50 px-2 py-0.5 text-xs font-bold text-white">

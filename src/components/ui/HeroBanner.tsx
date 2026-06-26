@@ -1,10 +1,14 @@
+import Image from 'next/image';
+
 export function HeroBanner() {
   return (
     <section className="relative overflow-hidden" style={{ minHeight: '520px' }}>
-      <img
+      <Image
         src="/hero-kittens.jpg"
         alt=""
-        className="absolute inset-0 h-full w-full object-cover"
+        fill
+        className="object-cover"
+        priority
         aria-hidden="true"
       />
       <div

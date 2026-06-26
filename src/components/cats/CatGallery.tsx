@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 
 export function CatGallery({ photos, name }: { photos: string[]; name: string }) {
@@ -18,11 +19,12 @@ export function CatGallery({ photos, name }: { photos: string[]; name: string })
 
   return (
     <div aria-label={`${name}'s gallery`}>
-      <div className="overflow-hidden rounded-[2rem]">
-        <img
+      <div className="relative h-80 overflow-hidden rounded-[2rem]">
+        <Image
           src={photos[selected]}
           alt={`${name} photo ${selected + 1}`}
-          className="h-80 w-full object-cover"
+          fill
+          className="object-cover"
         />
       </div>
       {photos.length > 1 && (
@@ -32,11 +34,11 @@ export function CatGallery({ photos, name }: { photos: string[]; name: string })
               key={i}
               type="button"
               onClick={() => setSelected(i)}
-              className={`h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border-2 transition ${
+              className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border-2 transition ${
                 i === selected ? 'border-teal-700' : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
-              <img src={photo} alt={`${name} thumbnail ${i + 1}`} className="h-full w-full object-cover" />
+              <Image src={photo} alt={`${name} thumbnail ${i + 1}`} fill className="object-cover" />
             </button>
           ))}
         </div>

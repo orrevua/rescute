@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { PawIcon } from './PawIcon';
 
@@ -28,15 +29,16 @@ export function ActionCard({
           <>
             {/* Green area with label on left */}
             <div className="relative z-10 flex flex-1 items-center overflow-hidden bg-[#4a7c59] pl-6">
-              <PawIcon className="absolute -bottom-3 -left-3 text-[#3d6a4b] opacity-40" size={70} style={{ transform: 'rotate(45deg)' }} />
+              <PawIcon className="absolute -bottom-5 -left-5 text-[#3d6a4b] opacity-40" size={80} style={{ transform: 'rotate(45deg)' }} />
               <span className="relative z-10 text-lg font-black text-white drop-shadow-sm">{label}</span>
             </div>
             {/* Image on right with gradient fade */}
             <div className="relative w-2/5 flex-shrink-0">
-              <img
+              <Image
                 src={image}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
                 style={{ objectPosition: imagePosition }}
                 aria-hidden="true"
               />
@@ -52,10 +54,11 @@ export function ActionCard({
           <>
             {/* Image on left with gradient fade */}
             <div className="relative w-2/5 flex-shrink-0">
-              <img
+              <Image
                 src={image}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
                 style={{ objectPosition: imagePosition }}
                 aria-hidden="true"
               />
@@ -68,7 +71,7 @@ export function ActionCard({
             </div>
             {/* Green area with label on right */}
             <div className="relative z-10 flex flex-1 items-center justify-end overflow-hidden bg-[#4a7c59] pr-6">
-              <PawIcon className="absolute -bottom-3 -right-3 text-[#3d6a4b] opacity-40" size={70} style={{ transform: 'rotate(-45deg)' }} />
+              <PawIcon className="absolute -bottom-5 -right-5 text-[#3d6a4b] opacity-40" size={80} style={{ transform: 'rotate(-45deg)' }} />
               <span className="relative z-10 text-lg font-black text-white drop-shadow-sm">{label}</span>
             </div>
           </>
@@ -79,10 +82,11 @@ export function ActionCard({
 
   return (
     <Link href={href} className="group relative block h-56 overflow-hidden cartoon-card">
-      <img
+      <Image
         src={image}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-110"
         style={{ objectPosition: imagePosition }}
         aria-hidden="true"
       />
