@@ -14,8 +14,15 @@ export function DonationMap({ cep }: { cep: string }) {
       .then((all) => {
         if (cep) {
           const normalized = cep.replace(/\D/g, '');
-          const filtered = all.filter((p) => p.cep.replace(/\D/g, '').startsWith(normalized.slice(0, 3)));
-          setPartners(filtered.length > 0 ? filtered : all);
+          for (let digits = 5; digits >= 2; digits--) {
+            const prefix = normalized.slice(0, digits);
+            const matches = all.filter((p) => p.cep.replace(/\D/g, '').startsWith(prefix));
+            if (matches.length > 0) {
+              setPartners(matches);
+              return;
+            }
+          }
+          setPartners([]);
         } else {
           setPartners(all);
         }
@@ -50,7 +57,7 @@ export function DonationMap({ cep }: { cep: string }) {
         Nearby drop-off points{cep ? ` near ${cep}` : ''} ({partners.length})
       </p>
       {partners.map((partner) => (
-        <article key={partner.id} className="rounded-2xl border border-teal-200 bg-teal-50 p-4">
+        <article key={partner.id} className="cartoon-card bg-white p-4">
           <p className="font-bold text-teal-950">{partner.name}</p>
           {partner.description && (
             <p className="mt-1 text-sm text-teal-800">{partner.description}</p>

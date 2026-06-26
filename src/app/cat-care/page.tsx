@@ -53,20 +53,20 @@ export default function CatCarePage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4f7f4] px-6 py-12">
+    <div className="min-h-screen px-6 py-12">
       <div className="mx-auto max-w-3xl">
         <p className="font-bold tracking-[.2em] text-teal-700">CAT CARE</p>
         <h1 className="mt-2 text-4xl font-bold text-stone-900">One question at a time, with care.</h1>
         <p className="mt-3 text-stone-600">Helpful tips for everyday life. In emergencies, please see a veterinarian.</p>
 
-        <div className="mt-8 flex flex-col rounded-2xl bg-white shadow-sm" style={{ height: '500px' }}>
+        <div className="cartoon-section mt-8 flex flex-col overflow-hidden bg-white" style={{ height: '500px' }}>
           <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto p-5">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <p className={`max-w-[85%] rounded-2xl p-4 whitespace-pre-wrap ${
+                <p className={`max-w-[85%] rounded-2xl border-2 border-teal-950 p-4 whitespace-pre-wrap shadow-[2px_2px_0_#1a3a38] ${
                   m.role === 'user'
                     ? 'bg-amber-100 text-stone-800'
-                    : 'bg-[#f4f7f4] text-stone-700'
+                    : 'bg-[#f0fdf8] text-stone-700'
                 }`}>
                   {m.content}
                 </p>
@@ -74,15 +74,15 @@ export default function CatCarePage() {
             ))}
             {sending && (
               <div className="flex justify-start">
-                <p className="rounded-2xl bg-[#f4f7f4] p-4 text-stone-500">Thinking carefully...</p>
+                <p className="rounded-2xl border-2 border-teal-950 bg-[#f0fdf8] p-4 text-stone-500 shadow-[2px_2px_0_#1a3a38]">Thinking carefully...</p>
               </div>
             )}
           </div>
 
           {enabled ? (
-            <div className="flex gap-2 border-t border-stone-200 p-4">
+            <div className="flex gap-2 border-t-3 border-teal-950 p-4">
               <textarea
-                className="min-w-0 flex-1 resize-none rounded-xl border border-stone-300 px-4 py-3"
+                className="cartoon-input min-w-0 flex-1 resize-none bg-white px-4 py-3 text-sm"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKeyDown}
@@ -90,7 +90,7 @@ export default function CatCarePage() {
                 rows={2}
               />
               <button
-                className="rounded-xl bg-teal-800 px-5 font-bold text-white disabled:opacity-50"
+                className="cartoon-btn border-2 bg-teal-800 px-5 font-bold text-white hover:bg-teal-700 disabled:opacity-50"
                 onClick={send}
                 disabled={sending || !input.trim()}
                 type="button"
@@ -99,21 +99,22 @@ export default function CatCarePage() {
               </button>
             </div>
           ) : (
-            <div className="border-t border-stone-200 p-4 text-center text-stone-500">
-              AI assistant not configured. Add <code className="text-sm">AI_PROVIDER_KEY</code> to <code className="text-sm">rescute-api/.env</code>.
+            <div className="border-t-3 border-teal-950 p-4 text-center text-stone-500">
+              AI assistant not configured. Add <code className="rounded bg-stone-100 px-1 text-sm font-bold">AI_PROVIDER_KEY</code> to <code className="rounded bg-stone-100 px-1 text-sm font-bold">rescute-api/.env</code>.
             </div>
           )}
         </div>
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold text-stone-900">Frequently asked questions</h2>
-          <div className="mt-4">
+          <div className="cartoon-section mt-4 bg-white p-6">
             {faq.map((item) => (
               <FAQAccordion item={item} key={item.question} />
             ))}
+            {faq.length === 0 && <p className="text-stone-500">No FAQs available yet.</p>}
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
