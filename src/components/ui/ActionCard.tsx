@@ -27,8 +27,8 @@ export function ActionCard({
         {imageOnRight ? (
           <>
             {/* Green area with label on left */}
-            <div className="relative z-10 flex flex-1 items-center bg-[#4a7c59] px-6">
-              <PawIcon className="absolute right-4 top-1/2 -translate-y-1/2 text-[#3d6a4b] opacity-40" size={60} />
+            <div className="relative z-10 flex flex-1 items-center overflow-hidden bg-[#4a7c59] pl-6">
+              <PawIcon className="absolute -bottom-3 -right-3 text-[#3d6a4b] opacity-40" size={70} style={{ transform: 'rotate(135deg)' }} />
               <span className="relative z-10 text-lg font-black text-white drop-shadow-sm">{label}</span>
             </div>
             {/* Image on right with gradient fade */}
@@ -67,8 +67,8 @@ export function ActionCard({
               />
             </div>
             {/* Green area with label on right */}
-            <div className="relative z-10 flex flex-1 items-center justify-end bg-[#4a7c59] px-6">
-              <PawIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-[#3d6a4b] opacity-40" size={60} />
+            <div className="relative z-10 flex flex-1 items-center justify-end overflow-hidden bg-[#4a7c59] pr-6">
+              <PawIcon className="absolute -bottom-3 -right-3 text-[#3d6a4b] opacity-40" size={70} style={{ transform: 'rotate(135deg)' }} />
               <span className="relative z-10 text-lg font-black text-white drop-shadow-sm">{label}</span>
             </div>
           </>

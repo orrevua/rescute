@@ -1,4 +1,4 @@
-export function PawIcon({ className = '', size = 120 }: { className?: string; size?: number }) {
+export function PawIcon({ className = '', size = 120, style }: { className?: string; size?: number; style?: React.CSSProperties }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,6 +7,7 @@ export function PawIcon({ className = '', size = 120 }: { className?: string; si
       viewBox="0 0 980 844"
       preserveAspectRatio="xMidYMid meet"
       className={className}
+      style={style}
       aria-hidden="true"
     >
       <g transform="translate(0,844) scale(0.1,-0.1)" fill="currentColor" stroke="none">
