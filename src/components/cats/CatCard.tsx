@@ -48,13 +48,8 @@ export function CatCard({ cat }: { cat: Cat }) {
             Meet {cat.name}
           </Link>
         </div>
-        <div className="md:hidden">
-          <CardHealthBadges cat={cat} />
-        </div>
       </Card>
-      <div className="hidden md:block">
-        <CardHealthBadges cat={cat} />
-      </div>
+      <CardHealthBadges cat={cat} />
     </div>
   );
 }

@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react';
 import { DashboardNav } from '@/components/dashboard/DashboardNav';
 import { deleteCat, getMyCats } from '@/lib/api/cats';
 import { ProtectedRoute } from '@/lib/auth/guard';
+import { Modal } from '@/components/ui/Modal';
 import type { Cat } from '@/lib/types';
 
 export default function DashboardCatsPage() {
   const [cats, setCats] = useState<Cat[]>([]);
+  const [deleting, setDeleting] = useState<Cat | null>(null);
 
   async function load() {
     const results = await getMyCats();
@@ -18,6 +20,13 @@ export default function DashboardCatsPage() {
   useEffect(() => {
     void getMyCats().then(setCats);
   }, []);
+
+  async function confirmDelete() {
+    if (!deleting) return;
+    await deleteCat(deleting.id);
+    setDeleting(null);
+    await load();
+  }
 
   return (
     <ProtectedRoute requiredRole="protector">
@@ -46,7 +55,7 @@ export default function DashboardCatsPage() {
                   </Link>
                   <button
                     className="cursor-pointer text-sm font-bold text-red-700 hover:underline"
-                    onClick={async () => { await deleteCat(cat.id); await load(); }}
+                    onClick={() => setDeleting(cat)}
                   >
                     Remove
                   </button>
@@ -56,6 +65,28 @@ export default function DashboardCatsPage() {
           </div>
         </div>
       </div>
+
+      {deleting && (
+        <Modal title="Remove cat" onClose={() => setDeleting(null)}>
+          <p className="text-stone-700">
+            Are you sure you want to remove <span className="font-bold">{deleting.name}</span>? This action cannot be undone.
+          </p>
+          <div className="mt-6 flex justify-end gap-3">
+            <button
+              className="cartoon-btn bg-white px-4 py-2 text-sm font-bold text-stone-700 hover:bg-stone-50"
+              onClick={() => setDeleting(null)}
+            >
+              Cancel
+            </button>
+            <button
+              className="cartoon-btn bg-red-600 px-4 py-2 text-sm font-bold text-white hover:bg-red-500"
+              onClick={confirmDelete}
+            >
+              Yes, remove
+            </button>
+          </div>
+        </Modal>
+      )}
     </ProtectedRoute>
   );
 }
