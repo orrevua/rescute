@@ -37,25 +37,35 @@ export default function FosterProfilePage() {
             ← Back to my applications
           </Link>
           <h1 className="mt-4 mb-6 text-3xl font-bold text-stone-900">My profile</h1>
-          <form className="space-y-4 rounded-3xl bg-white p-6 shadow-sm" onSubmit={submit}>
-            <label className="block text-sm font-semibold text-stone-700">
-              Full name
-              <input className="mt-1 w-full rounded-xl border p-3 font-normal" name="full_name" defaultValue={profile.full_name ?? ''} required />
-            </label>
-            <label className="block text-sm font-semibold text-stone-700">
-              Phone
-              <input className="mt-1 w-full rounded-xl border p-3 font-normal" name="phone" defaultValue={profile.phone ?? ''} required />
-            </label>
-            <label className="block text-sm font-semibold text-stone-700">
-              City
-              <input className="mt-1 w-full rounded-xl border p-3 font-normal" name="city" defaultValue={profile.city ?? ''} required />
-            </label>
-            <label className="block text-sm font-semibold text-stone-700">
-              State
-              <input className="mt-1 w-full rounded-xl border p-3 font-normal" name="state" defaultValue={profile.state ?? ''} required />
-            </label>
-            {saved && <p className="text-teal-800">Profile updated.</p>}
-            <button className="rounded-xl bg-teal-800 px-4 py-3 font-bold text-white" type="submit">
+          <form className="cartoon-section space-y-6 bg-[#f0fdf8] p-8" onSubmit={submit}>
+            <fieldset className="space-y-4">
+              <legend className="mb-2 text-lg font-extrabold tracking-wide text-teal-900">About you</legend>
+              <div>
+                <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="foster-full-name">Full name</label>
+                <input className="cartoon-input w-full bg-white p-3" defaultValue={profile.full_name ?? ''} id="foster-full-name" name="full_name" placeholder="e.g. Jamie Rivera" required />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="foster-phone">Phone</label>
+                <input className="cartoon-input w-full bg-white p-3" defaultValue={profile.phone ?? ''} id="foster-phone" name="phone" placeholder="(555) 000-0000" required />
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="foster-city">City</label>
+                  <input className="cartoon-input w-full bg-white p-3" defaultValue={profile.city ?? ''} id="foster-city" name="city" placeholder="e.g. Springfield" required />
+                </div>
+                <div>
+                  <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="foster-state">State</label>
+                  <input className="cartoon-input w-full bg-white p-3" defaultValue={profile.state ?? ''} id="foster-state" maxLength={2} name="state" placeholder="e.g. NY" required />
+                </div>
+              </div>
+            </fieldset>
+
+            {saved && (
+              <p className="rounded-full bg-teal-100 px-4 py-2 text-center text-sm font-bold text-teal-900 shadow-[0_0_0_2.5px_#0d9488,3px_3px_0_#0d9488]">
+                Profile updated successfully!
+              </p>
+            )}
+            <button className="cartoon-btn w-full bg-teal-800 px-6 py-3 text-base font-extrabold text-white hover:bg-teal-700 disabled:opacity-50" type="submit">
               Save changes
             </button>
           </form>
