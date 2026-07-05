@@ -13,7 +13,7 @@ export default function Home() {
           <ActionCard
             href="/donate"
             label="Make a donation"
-            image="/hero-kittens.jpg"
+            image="/hero-kittens.png"
             imagePosition="right bottom"
             size="pill"
             imageOnRight={true}
@@ -21,7 +21,7 @@ export default function Home() {
           <ActionCard
             href="/foster/apply"
             label="Be a foster home"
-            image="/hero-kittens.jpg"
+            image="/hero-kittens.png"
             imagePosition="left center"
             size="pill"
             imageOnRight={false}

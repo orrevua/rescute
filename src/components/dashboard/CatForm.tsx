@@ -98,11 +98,11 @@ export function CatForm({ cat }: { cat?: Cat }) {
           </div>
           <div>
             <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-city">City</label>
-            <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.city} id="cat-city" name="city" placeholder="e.g. São Paulo" required />
+            <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.city} id="cat-city" name="city" placeholder="e.g. Springfield" required />
           </div>
           <div>
             <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-state">State</label>
-            <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.state} id="cat-state" maxLength={2} name="state" placeholder="e.g. SP" required />
+            <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.state} id="cat-state" maxLength={2} name="state" placeholder="e.g. NY" required />
           </div>
         </div>
       </fieldset>

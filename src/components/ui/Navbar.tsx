@@ -57,7 +57,7 @@ export function Navbar() {
                     ? 'bg-teal-800 text-white'
                     : 'bg-white text-stone-800 hover:bg-teal-50'
                 }`}
-                href={user.role === 'protector' ? '/dashboard' : '/foster/applications'}
+                href={user.role === 'protector' ? '/dashboard/profile' : '/foster/profile'}
               >
                 Profile
               </Link>
@@ -135,7 +135,7 @@ export function Navbar() {
                   ? 'bg-teal-800 text-white'
                   : 'bg-white text-stone-800 hover:bg-teal-50'
               }`}
-              href={user.role === 'protector' ? '/dashboard' : '/foster/applications'}
+              href={user.role === 'protector' ? '/dashboard/profile' : '/foster/profile'}
               onClick={closeMenu}
             >
               Profile

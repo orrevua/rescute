@@ -4,18 +4,22 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { PartnerCard } from '@/components/partners/PartnerCard';
 import { getPartners } from '@/lib/api/partners';
+import { useAuth } from '@/lib/auth/context';
 import type { Partner } from '@/lib/types';
 
 export default function PartnersPage() {
+  const { user } = useAuth();
   const [partners, setPartners] = useState<Partner[]>([]);
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
+  function load() {
     void getPartners()
       .then(setPartners)
       .catch(() => setPartners([]))
       .finally(() => setLoaded(true));
-  }, []);
+  }
+
+  useEffect(load, []);
 
   return (
     <div className="px-6 py-10">
@@ -39,7 +43,7 @@ export default function PartnersPage() {
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {partners.map((partner) => (
-            <PartnerCard key={partner.id} partner={partner} />
+            <PartnerCard currentUserId={user?.id} key={partner.id} onChange={load} partner={partner} />
           ))}
         </div>
 

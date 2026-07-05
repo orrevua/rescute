@@ -4,7 +4,7 @@ export function HeroBanner() {
   return (
     <section className="relative overflow-hidden" style={{ minHeight: '520px' }}>
       <Image
-        src="/hero-kittens.jpg"
+        src="/hero-kittens.png"
         alt=""
         fill
         sizes="100vw"
@@ -27,7 +27,7 @@ export function HeroBanner() {
       />
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col justify-center px-8 py-24" style={{ minHeight: '520px' }}>
         <p className="text-sm font-black tracking-[.3em] text-amber-300">A NEW BEGINNING</p>
-        <h1 className="mt-4 max-w-2xl text-5xl font-black leading-tight text-white drop-shadow-lg">
+        <h1 className="mt-4 max-w-xl text-3xl font-black leading-tight text-white drop-shadow-lg sm:text-4xl">
           Every cat deserves a corner of the world to call their own.
         </h1>
         <p className="mt-5 max-w-lg text-lg text-teal-100 drop-shadow-md">

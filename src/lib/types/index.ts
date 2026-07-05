@@ -3,6 +3,7 @@ export type UserRole = 'protector' | 'foster';
 export type ApplicationStatus = 'pending' | 'under_review' | 'approved' | 'rejected';
 export type DonationType = 'financial' | 'item';
 export type Sex = 'male' | 'female';
+export type NegotiationStatus = 'pending' | 'accepted' | 'rejected' | 'countered';
 
 // Entities
 export interface User {
@@ -120,6 +121,39 @@ export interface Partner {
   coupon_code?: string;
   discount_pct?: number;
   is_active: boolean;
+  owner_id?: string | null;
+}
+
+export interface Host {
+  user_id: string;
+  role: UserRole;
+  display_name: string;
+  city?: string | null;
+  state?: string | null;
+}
+
+export interface UserProfile {
+  email: string;
+  role: UserRole;
+  org_name?: string | null;
+  full_name?: string | null;
+  description?: string | null;
+  phone?: string | null;
+  city?: string | null;
+  state?: string | null;
+}
+
+export interface PartnerNegotiation {
+  id: string;
+  status: NegotiationStatus;
+  proposed_amount: number;
+  proposed_message?: string | null;
+  contact_email: string;
+  contact_phone: string;
+  counter_amount?: number | null;
+  counter_message?: string | null;
+  created_at: string;
+  partner: Partner;
 }
 
 // Auth types
