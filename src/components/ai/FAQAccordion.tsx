@@ -16,9 +16,7 @@ export function FAQAccordion({ item }: { item: FAQItem }) {
         <span>{open ? '−' : '+'}</span>
       </button>
 
-      {open && (
-        <p className="mt-3 leading-7 text-stone-600">{item.answer}</p>
-      )}
+      {open && <p className="mt-3 leading-7 text-stone-600">{item.answer}</p>}
     </article>
   );
 }

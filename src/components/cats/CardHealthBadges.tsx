@@ -25,7 +25,9 @@ export function CardHealthBadges({ cat }: { cat: Cat }) {
     <div className="card-badges">
       {active.map((b, i) => (
         <div key={b.label} className="card-badge-slot" style={{ '--i': i } as React.CSSProperties}>
-          <span className="card-badge-drop"><DropSvg /></span>
+          <span className="card-badge-drop">
+            <DropSvg />
+          </span>
           <span className="card-badge-label">{b.label}</span>
         </div>
       ))}

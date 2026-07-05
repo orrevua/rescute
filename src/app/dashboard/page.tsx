@@ -9,7 +9,9 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
 
   useEffect(() => {
-    getDashboardStats().then(setStats).catch(() => {});
+    getDashboardStats()
+      .then(setStats)
+      .catch(() => {});
   }, []);
 
   return (

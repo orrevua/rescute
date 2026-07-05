@@ -1,6 +1,7 @@
 'use client';
 
 import { type FormEvent, useRef, useState } from 'react';
+import Image from 'next/image';
 import { createCat, updateCat, uploadPhoto } from '@/lib/api/cats';
 import type { Cat } from '@/lib/types';
 
@@ -79,30 +80,78 @@ export function CatForm({ cat }: { cat?: Cat }) {
     <form className="cartoon-section space-y-6 bg-[#f0fdf8] p-8" onSubmit={submit}>
       {/* Basic info */}
       <fieldset className="space-y-4">
-        <legend className="mb-2 text-lg font-extrabold tracking-wide text-teal-900">Basic info</legend>
+        <legend className="mb-2 text-lg font-extrabold tracking-wide text-teal-900">
+          Basic info
+        </legend>
         <div>
-          <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-name">Name</label>
-          <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.name} id="cat-name" name="name" placeholder="e.g. Whiskers" required />
+          <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-name">
+            Name
+          </label>
+          <input
+            className="cartoon-input w-full bg-white p-3"
+            defaultValue={cat?.name}
+            id="cat-name"
+            name="name"
+            placeholder="e.g. Whiskers"
+            required
+          />
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-age">Age (months)</label>
-            <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.age_months} id="cat-age" min="0" name="age" placeholder="e.g. 12" required type="number" />
+            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-age">
+              Age (months)
+            </label>
+            <input
+              className="cartoon-input w-full bg-white p-3"
+              defaultValue={cat?.age_months}
+              id="cat-age"
+              min="0"
+              name="age"
+              placeholder="e.g. 12"
+              required
+              type="number"
+            />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-sex">Sex</label>
-            <select className="cartoon-input w-full bg-white p-3" defaultValue={cat?.sex ?? 'female'} id="cat-sex" name="sex">
+            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-sex">
+              Sex
+            </label>
+            <select
+              className="cartoon-input w-full bg-white p-3"
+              defaultValue={cat?.sex ?? 'female'}
+              id="cat-sex"
+              name="sex"
+            >
               <option value="female">Female</option>
               <option value="male">Male</option>
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-city">City</label>
-            <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.city} id="cat-city" name="city" placeholder="e.g. Springfield" required />
+            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-city">
+              City
+            </label>
+            <input
+              className="cartoon-input w-full bg-white p-3"
+              defaultValue={cat?.city}
+              id="cat-city"
+              name="city"
+              placeholder="e.g. Springfield"
+              required
+            />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-state">State</label>
-            <input className="cartoon-input w-full bg-white p-3" defaultValue={cat?.state} id="cat-state" maxLength={2} name="state" placeholder="e.g. NY" required />
+            <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-state">
+              State
+            </label>
+            <input
+              className="cartoon-input w-full bg-white p-3"
+              defaultValue={cat?.state}
+              id="cat-state"
+              maxLength={2}
+              name="state"
+              placeholder="e.g. NY"
+              required
+            />
           </div>
         </div>
       </fieldset>
@@ -111,12 +160,30 @@ export function CatForm({ cat }: { cat?: Cat }) {
       <fieldset className="space-y-4">
         <legend className="mb-2 text-lg font-extrabold tracking-wide text-teal-900">Story</legend>
         <div>
-          <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-personality">Personality</label>
-          <textarea className="cartoon-input w-full bg-white p-3" defaultValue={cat?.personality} id="cat-personality" name="personality" placeholder="What makes this cat special?" rows={2} />
+          <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-personality">
+            Personality
+          </label>
+          <textarea
+            className="cartoon-input w-full bg-white p-3"
+            defaultValue={cat?.personality}
+            id="cat-personality"
+            name="personality"
+            placeholder="What makes this cat special?"
+            rows={2}
+          />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-backstory">Backstory</label>
-          <textarea className="cartoon-input w-full bg-white p-3" defaultValue={cat?.backstory} id="cat-backstory" name="backstory" placeholder="How did you find this cat?" rows={3} />
+          <label className="mb-1 block text-sm font-bold text-stone-700" htmlFor="cat-backstory">
+            Backstory
+          </label>
+          <textarea
+            className="cartoon-input w-full bg-white p-3"
+            defaultValue={cat?.backstory}
+            id="cat-backstory"
+            name="backstory"
+            placeholder="How did you find this cat?"
+            rows={3}
+          />
         </div>
       </fieldset>
 
@@ -126,11 +193,16 @@ export function CatForm({ cat }: { cat?: Cat }) {
         {photos.length > 0 && (
           <div className="flex flex-wrap gap-3">
             {photos.map((photo, i) => (
-              <div key={i} className="relative h-24 w-24 overflow-hidden rounded-2xl shadow-[0_0_0_2.5px_#1a3a38,3px_3px_0_#1a3a38]">
-                <img
+              <div
+                key={i}
+                className="relative h-24 w-24 overflow-hidden rounded-2xl shadow-[0_0_0_2.5px_#1a3a38,3px_3px_0_#1a3a38]"
+              >
+                <Image
                   src={photo.preview || photo.url}
                   alt=""
-                  className="h-full w-full object-cover"
+                  fill
+                  unoptimized
+                  className="object-cover"
                 />
                 <button
                   type="button"
@@ -149,7 +221,10 @@ export function CatForm({ cat }: { cat?: Cat }) {
           accept="image/*"
           multiple
           className="hidden"
-          onChange={(e) => { if (e.target.files?.length) addFiles(e.target.files); e.target.value = ''; }}
+          onChange={(e) => {
+            if (e.target.files?.length) addFiles(e.target.files);
+            e.target.value = '';
+          }}
         />
         <button
           type="button"
@@ -165,8 +240,11 @@ export function CatForm({ cat }: { cat?: Cat }) {
         <legend className="mb-2 text-lg font-extrabold tracking-wide text-teal-900">Traits</legend>
         <div className="grid gap-4 sm:grid-cols-3">
           {['sociability', 'energy', 'playfulness'].map((field) => (
-            <div key={field} className="rounded-2xl bg-white p-4 shadow-[0_0_0_2.5px_#1a3a38,3px_3px_0_#1a3a38]">
-              <label className="block text-sm font-bold capitalize text-stone-700">
+            <div
+              key={field}
+              className="rounded-2xl bg-white p-4 shadow-[0_0_0_2.5px_#1a3a38,3px_3px_0_#1a3a38]"
+            >
+              <label className="block text-sm font-bold text-stone-700 capitalize">
                 {field}
                 <input
                   className="mt-2 w-full accent-teal-700"
@@ -197,7 +275,12 @@ export function CatForm({ cat }: { cat?: Cat }) {
               key={field}
               className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-stone-700 shadow-[0_0_0_2.5px_#1a3a38,3px_3px_0_#1a3a38]"
             >
-              <input className="h-4 w-4 accent-teal-700" defaultChecked={Boolean(cat?.[field as keyof Cat])} name={field} type="checkbox" />
+              <input
+                className="h-4 w-4 accent-teal-700"
+                defaultChecked={Boolean(cat?.[field as keyof Cat])}
+                name={field}
+                type="checkbox"
+              />
               {label}
             </label>
           ))}
@@ -206,7 +289,7 @@ export function CatForm({ cat }: { cat?: Cat }) {
 
       {/* Submit */}
       {done && (
-        <p className="rounded-full bg-teal-100 px-4 py-2 text-center text-sm font-bold text-teal-900 shadow-[0_0_0_2.5px_#0d9488,3px_3px_0_#0d9488]">
+        <p className="rounded-full bg-teal-100 px-4 py-2 text-center text-sm font-bold text-teal-900 shadow-[0_0_0_2.5px_var(--cartoon-accent),3px_3px_0_var(--cartoon-accent)]">
           Cat saved successfully!
         </p>
       )}

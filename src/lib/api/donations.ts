@@ -11,7 +11,10 @@ export async function createDonation(data: Record<string, unknown>): Promise<Don
   return response;
 }
 
-export async function updateDonation(id: string, data: Record<string, unknown>): Promise<DonationPost> {
+export async function updateDonation(
+  id: string,
+  data: Record<string, unknown>,
+): Promise<DonationPost> {
   const { data: response } = await api.patch<DonationPost>(`/donations/${id}`, data);
   return response;
 }
@@ -56,10 +59,7 @@ export interface IntentData {
   message?: string;
 }
 
-export async function submitIntent(
-  donationId: string,
-  data: IntentData,
-): Promise<DonationIntent> {
+export async function submitIntent(donationId: string, data: IntentData): Promise<DonationIntent> {
   const { data: response } = await api.post<DonationIntent>(
     `/donations/${donationId}/intent`,
     data,

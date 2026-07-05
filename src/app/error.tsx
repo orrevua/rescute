@@ -6,10 +6,7 @@ export default function ErrorPage({ reset }: { reset: () => void }) {
       <div className="text-center">
         <h1 className="text-3xl font-bold">Something slipped away here.</h1>
 
-        <button
-          className="mt-5 rounded-xl bg-teal-800 px-4 py-2 font-bold text-white"
-          onClick={reset}
-        >
+        <button className="cartoon-btn mt-5 bg-teal-800 px-4 py-2 text-white" onClick={reset}>
           Try again
         </button>
       </div>

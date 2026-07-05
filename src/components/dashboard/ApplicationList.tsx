@@ -41,19 +41,41 @@ function ApplicationCard({ application }: { application: Application }) {
         <div className="mt-3 space-y-1 border-t-2 border-teal-950 pt-3 text-sm text-stone-600">
           {isAdoption(application) ? (
             <>
-              <p><span className="font-medium text-stone-700">Email:</span> {application.applicant_email}</p>
-              <p><span className="font-medium text-stone-700">Phone:</span> {application.applicant_phone}</p>
+              <p>
+                <span className="font-medium text-stone-700">Email:</span>{' '}
+                {application.applicant_email}
+              </p>
+              <p>
+                <span className="font-medium text-stone-700">Phone:</span>{' '}
+                {application.applicant_phone}
+              </p>
               {application.message && (
-                <p><span className="font-medium text-stone-700">Message:</span> {application.message}</p>
+                <p>
+                  <span className="font-medium text-stone-700">Message:</span> {application.message}
+                </p>
               )}
             </>
           ) : (
             <>
-              <p><span className="font-medium text-stone-700">City:</span> {application.city}</p>
-              <p><span className="font-medium text-stone-700">Existing pets:</span> {application.existing_pets}</p>
-              <p><span className="font-medium text-stone-700">Compatibility:</span> {application.compatibility}</p>
-              <p><span className="font-medium text-stone-700">Prior experience:</span> {application.prior_experience}</p>
-              <p><span className="font-medium text-stone-700">Cost aware:</span> {application.cost_aware ? 'Yes' : 'No'}</p>
+              <p>
+                <span className="font-medium text-stone-700">City:</span> {application.city}
+              </p>
+              <p>
+                <span className="font-medium text-stone-700">Existing pets:</span>{' '}
+                {application.existing_pets}
+              </p>
+              <p>
+                <span className="font-medium text-stone-700">Compatibility:</span>{' '}
+                {application.compatibility}
+              </p>
+              <p>
+                <span className="font-medium text-stone-700">Prior experience:</span>{' '}
+                {application.prior_experience}
+              </p>
+              <p>
+                <span className="font-medium text-stone-700">Cost aware:</span>{' '}
+                {application.cost_aware ? 'Yes' : 'No'}
+              </p>
             </>
           )}
         </div>
@@ -62,7 +84,13 @@ function ApplicationCard({ application }: { application: Application }) {
   );
 }
 
-export function ApplicationList({ title, applications }: { title: string; applications: Application[] }) {
+export function ApplicationList({
+  title,
+  applications,
+}: {
+  title: string;
+  applications: Application[];
+}) {
   return (
     <section className="cartoon-section bg-[#f0fdf8] p-6">
       <h2 className="text-xl font-bold text-stone-900">{title}</h2>

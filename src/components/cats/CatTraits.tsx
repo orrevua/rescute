@@ -11,9 +11,7 @@ export function CatTraits({ cat }: { cat: Cat }) {
     <dl className="grid gap-4 sm:grid-cols-3">
       {(Object.keys(labels) as (keyof typeof labels)[]).map((trait) => (
         <div key={trait}>
-          <dt className="text-sm font-semibold text-stone-700">
-            {labels[trait]}
-          </dt>
+          <dt className="text-sm font-semibold text-stone-700">{labels[trait]}</dt>
           <dd className="mt-2 flex gap-1">
             {Array.from({ length: 5 }, (_, index) => (
               <span

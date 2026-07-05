@@ -1,1 +1,7 @@
-export function LoadingSpinner() { return <div className="grid min-h-[40vh] place-items-center"><span className="h-8 w-8 animate-spin rounded-full border-4 border-teal-200 border-t-teal-800" /></div>; }
+export function LoadingSpinner() {
+  return (
+    <div className="grid min-h-[40vh] place-items-center">
+      <span className="h-8 w-8 animate-spin rounded-full border-4 border-teal-200 border-t-teal-800" />
+    </div>
+  );
+}

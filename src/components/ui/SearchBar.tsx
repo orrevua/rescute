@@ -2,7 +2,13 @@
 
 import type { ChangeEvent } from 'react';
 
-export function SearchBar({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+export function SearchBar({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+}) {
   return (
     <label className="block">
       <span className="sr-only">Search by name</span>

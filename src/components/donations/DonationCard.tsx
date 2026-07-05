@@ -16,15 +16,23 @@ export function DonationCard({ donation }: { donation: DonationPost }) {
 
   return (
     <>
-      <article className="relative cartoon-card bg-white p-6 overflow-hidden">
-        <PawIcon size={52} className="absolute top-2 right-3 text-teal-800 opacity-20 pointer-events-none" style={{ transform: 'rotate(-25deg)' }} />
-        <PawIcon size={36} className="absolute bottom-3 left-4 text-teal-800 opacity-15 pointer-events-none" style={{ transform: 'rotate(18deg)' }} />
+      <article className="cartoon-card relative overflow-hidden bg-white p-6">
+        <PawIcon
+          size={52}
+          className="pointer-events-none absolute top-2 right-3 text-teal-800 opacity-20"
+          style={{ transform: 'rotate(-25deg)' }}
+        />
+        <PawIcon
+          size={36}
+          className="pointer-events-none absolute bottom-3 left-4 text-teal-800 opacity-15"
+          style={{ transform: 'rotate(18deg)' }}
+        />
         <p className="text-sm font-black tracking-widest text-teal-700">FINANCIAL SUPPORT</p>
         <h2 className="mt-2 text-2xl font-bold text-stone-900">{donation.title}</h2>
         <p className="mt-2 text-stone-600">{donation.description}</p>
         {donation.target_amount && (
           <>
-            <div className="mt-5 h-3 overflow-hidden rounded-full border-2 border-teal-950 bg-stone-200">
+            <div className="border-ink mt-5 h-3 overflow-hidden rounded-full border-2 bg-stone-200">
               <div
                 className="h-full rounded-full bg-amber-400 transition-all duration-500"
                 style={{ width: `${progress}%` }}

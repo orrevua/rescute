@@ -41,17 +41,23 @@ export function ContributionModal({ donationId, campaignTitle, onClose }: Props)
       {result === 'success' ? (
         <div className="space-y-4">
           <p className="leading-7 text-stone-700">
-            Your interest to contribute <span className="font-black text-teal-800">${parseFloat(amount).toFixed(2)}</span> has been submitted!
-            The protector will reach out to arrange payment.
+            Your interest to contribute{' '}
+            <span className="font-black text-teal-800">${parseFloat(amount).toFixed(2)}</span> has
+            been submitted! The protector will reach out to arrange payment.
           </p>
-          <button className="cartoon-btn bg-teal-800 px-5 py-2 text-white hover:bg-teal-700" onClick={onClose} type="button">
+          <button
+            className="cartoon-btn bg-teal-800 px-5 py-2 text-white hover:bg-teal-700"
+            onClick={onClose}
+            type="button"
+          >
             Close
           </button>
         </div>
       ) : (
         <form className="space-y-4" onSubmit={handleSubmit}>
           <p className="text-sm leading-6 text-stone-600">
-            This campaign doesn&apos;t have a direct payment link yet. Leave your contact info and the protector will reach out to arrange the donation.
+            This campaign doesn&apos;t have a direct payment link yet. Leave your contact info and
+            the protector will reach out to arrange the donation.
           </p>
           <Input label="Your name" name="name" required />
           <Input label="Email" name="email" type="email" required />

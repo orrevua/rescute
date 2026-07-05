@@ -17,14 +17,12 @@ export function ChatInput({ onAsk }: { onAsk: (question: string) => void }) {
       }}
     >
       <input
-        className="min-w-0 flex-1 rounded-xl border border-stone-300 px-4 py-3"
+        className="cartoon-input min-w-0 flex-1 px-4 py-3"
         onChange={(e) => setQuestion(e.target.value)}
         placeholder="E.g.: my cat stopped drinking water"
         value={question}
       />
-      <button className="rounded-xl bg-teal-800 px-4 font-bold text-white">
-        Ask
-      </button>
+      <button className="cartoon-btn bg-teal-800 px-4 text-white">Ask</button>
     </form>
   );
 }

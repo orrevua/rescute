@@ -55,16 +55,20 @@ export function RegisterForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <fieldset>
-        <legend className="mb-2 text-sm font-bold text-stone-700">
-          Account type
-        </legend>
+        <legend className="mb-2 text-sm font-bold text-stone-700">Account type</legend>
         <RoleSelect value={role} onChange={setRole} />
       </fieldset>
 
       <div className="space-y-4">
         <Input label="Email" type="email" value={email} onChange={setEmail} required />
         <Input label="Password" type="password" value={password} onChange={setPassword} required />
-        <Input label="Confirm Password" type="password" value={confirmPassword} onChange={setConfirmPassword} required />
+        <Input
+          label="Confirm Password"
+          type="password"
+          value={confirmPassword}
+          onChange={setConfirmPassword}
+          required
+        />
       </div>
 
       {role === 'protector' && (
@@ -86,9 +90,7 @@ export function RegisterForm() {
         </div>
       )}
 
-      {error && (
-        <p className="text-sm font-bold text-red-600">{error}</p>
-      )}
+      {error && <p className="text-sm font-bold text-red-600">{error}</p>}
 
       <button
         type="submit"
@@ -116,9 +118,7 @@ function Input({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-bold text-stone-700">
-        {label}
-      </span>
+      <span className="mb-1 block text-sm font-bold text-stone-700">{label}</span>
       <input
         type={type}
         value={value}

@@ -2,11 +2,20 @@
 
 import type { CatFilters } from '../../lib/api/cats';
 
-const selectClass = 'cartoon-input w-full bg-white px-3 py-2.5 text-sm font-semibold text-stone-800 appearance-none';
-const inputClass = 'cartoon-input w-full bg-white px-3 py-2.5 text-sm font-semibold text-stone-800 placeholder:text-stone-400';
+const selectClass =
+  'cartoon-input w-full bg-white px-3 py-2.5 text-sm font-semibold text-stone-800 appearance-none';
+const inputClass =
+  'cartoon-input w-full bg-white px-3 py-2.5 text-sm font-semibold text-stone-800 placeholder:text-stone-400';
 
-export function FilterBar({ filters, onChange }: { filters: CatFilters; onChange: (filters: CatFilters) => void }) {
-  const update = (key: keyof CatFilters, value: string) => onChange({ ...filters, [key]: value || undefined });
+export function FilterBar({
+  filters,
+  onChange,
+}: {
+  filters: CatFilters;
+  onChange: (filters: CatFilters) => void;
+}) {
+  const update = (key: keyof CatFilters, value: string) =>
+    onChange({ ...filters, [key]: value || undefined });
 
   return (
     <div className="grid gap-3 sm:grid-cols-3">

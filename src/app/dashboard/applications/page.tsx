@@ -24,7 +24,10 @@ export default function ApplicationsPage() {
     <ProtectedRoute requiredRole="protector">
       <div className="min-h-screen px-6 py-10">
         <div className="mx-auto max-w-6xl">
-          <Link className="cursor-pointer text-sm font-semibold text-teal-700 hover:underline" href="/dashboard">
+          <Link
+            className="cursor-pointer text-sm font-semibold text-teal-700 hover:underline"
+            href="/dashboard"
+          >
             ← Back to dashboard
           </Link>
           <h1 className="mt-4 text-3xl font-bold text-stone-900">Received applications</h1>

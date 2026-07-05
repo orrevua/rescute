@@ -28,7 +28,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="relative border-b-3 border-teal-950 bg-[#f5f0e1] shadow-[0_3px_0_#1a3a38]">
+    <header className="border-ink relative border-b-3 bg-[#f5f0e1] shadow-[0_3px_0_var(--cartoon-ink)]">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link className="flex items-center" href="/">
           <RescuteLogo height={30} />
@@ -69,7 +69,10 @@ export function Navbar() {
               </button>
             </>
           ) : (
-            <Link className="cartoon-btn bg-amber-400 px-4 py-1.5 text-stone-950 hover:bg-amber-300" href="/login">
+            <Link
+              className="cartoon-btn bg-amber-400 px-4 py-1.5 text-stone-950 hover:bg-amber-300"
+              href="/login"
+            >
               Sign In
             </Link>
           )}
@@ -100,12 +103,7 @@ export function Navbar() {
       </nav>
 
       {/* Mobile overlay */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
-          onClick={closeMenu}
-        />
-      )}
+      {menuOpen && <div className="fixed inset-0 z-40 bg-black/40 md:hidden" onClick={closeMenu} />}
 
       {/* Mobile menu panel */}
       <div
@@ -116,9 +114,7 @@ export function Navbar() {
         {links.map(([href, label]) => (
           <Link
             className={`cartoon-btn w-full px-4 py-2.5 text-center text-sm font-extrabold ${
-              isActive(href)
-                ? 'bg-teal-800 text-white'
-                : 'bg-white text-stone-800 hover:bg-teal-50'
+              isActive(href) ? 'bg-teal-800 text-white' : 'bg-white text-stone-800 hover:bg-teal-50'
             }`}
             href={href}
             key={href}
@@ -142,7 +138,10 @@ export function Navbar() {
             </Link>
             <button
               className="cartoon-btn w-full bg-white px-4 py-2.5 text-sm font-extrabold text-red-700 hover:bg-red-50"
-              onClick={() => { logout(); closeMenu(); }}
+              onClick={() => {
+                logout();
+                closeMenu();
+              }}
             >
               Sign Out
             </button>

@@ -10,11 +10,18 @@ export interface AdoptionSubmission {
   accepted_terms: boolean;
 }
 
-export async function submitAdoption(
-  submission: AdoptionSubmission,
-): Promise<AdoptionApplication> {
+export async function submitAdoption(submission: AdoptionSubmission): Promise<AdoptionApplication> {
   const { data } = await api.post<AdoptionApplication>('/adoptions', submission);
   return data;
 }
-export async function getAdoptions(): Promise<AdoptionApplication[]> { const { data } = await api.get<AdoptionApplication[]>('/adoptions'); return data; }
-export async function updateAdoptionStatus(id: string, status: string): Promise<AdoptionApplication> { const { data } = await api.patch<AdoptionApplication>(`/adoptions/${id}/status`, { status }); return data; }
+export async function getAdoptions(): Promise<AdoptionApplication[]> {
+  const { data } = await api.get<AdoptionApplication[]>('/adoptions');
+  return data;
+}
+export async function updateAdoptionStatus(
+  id: string,
+  status: string,
+): Promise<AdoptionApplication> {
+  const { data } = await api.patch<AdoptionApplication>(`/adoptions/${id}/status`, { status });
+  return data;
+}

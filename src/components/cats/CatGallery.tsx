@@ -36,10 +36,17 @@ export function CatGallery({ photos, name }: { photos: string[]; name: string })
               type="button"
               onClick={() => setSelected(i)}
               className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border-2 transition ${
-                i === selected ? 'border-teal-700' : 'border-transparent opacity-60 hover:opacity-100'
+                i === selected
+                  ? 'border-teal-700'
+                  : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
-              <Image src={resolvePhotoUrl(photo)} alt={`${name} thumbnail ${i + 1}`} fill className="object-cover" />
+              <Image
+                src={resolvePhotoUrl(photo)}
+                alt={`${name} thumbnail ${i + 1}`}
+                fill
+                className="object-cover"
+              />
             </button>
           ))}
         </div>

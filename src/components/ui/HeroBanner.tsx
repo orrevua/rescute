@@ -25,9 +25,12 @@ export function HeroBanner() {
           background: 'linear-gradient(to top, #f5f0e1 0%, transparent 100%)',
         }}
       />
-      <div className="relative z-10 mx-auto flex max-w-6xl flex-col justify-center px-8 py-24" style={{ minHeight: '520px' }}>
+      <div
+        className="relative z-10 mx-auto flex max-w-6xl flex-col justify-center px-8 py-24"
+        style={{ minHeight: '520px' }}
+      >
         <p className="text-sm font-black tracking-[.3em] text-amber-300">A NEW BEGINNING</p>
-        <h1 className="mt-4 max-w-xl text-3xl font-black leading-tight text-white drop-shadow-lg sm:text-4xl">
+        <h1 className="mt-4 max-w-xl text-3xl leading-tight font-black text-white drop-shadow-lg sm:text-4xl">
           Every cat deserves a corner of the world to call their own.
         </h1>
         <p className="mt-5 max-w-lg text-lg text-teal-100 drop-shadow-md">

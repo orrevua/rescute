@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { DashboardNav } from '@/components/dashboard/DashboardNav';
+import { Badge } from '@/components/ui/Badge';
 import { getIntents } from '@/lib/api/donations';
 import { ProtectedRoute } from '@/lib/auth/guard';
 import type { DonationIntent } from '@/lib/types';
@@ -11,7 +12,9 @@ export default function IntentsPage() {
   const [intents, setIntents] = useState<DonationIntent[]>([]);
 
   useEffect(() => {
-    void getIntents().then(setIntents).catch(() => {});
+    void getIntents()
+      .then(setIntents)
+      .catch(() => {});
   }, []);
 
   return (
@@ -23,7 +26,8 @@ export default function IntentsPage() {
           </Link>
           <h1 className="mt-4 text-3xl font-bold text-stone-900">Donation intents</h1>
           <p className="mt-2 text-stone-600">
-            People who expressed interest in donating to your campaigns. Reach out to arrange payment.
+            People who expressed interest in donating to your campaigns. Reach out to arrange
+            payment.
           </p>
           <div className="cartoon-section mt-6 bg-[#f0fdf8] p-4">
             <DashboardNav />
@@ -34,14 +38,16 @@ export default function IntentsPage() {
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="font-bold text-stone-900">{intent.donor_name}</p>
-                    <p className="text-sm text-stone-600">{intent.donor_email} · {intent.donor_phone}</p>
+                    <p className="text-sm text-stone-600">
+                      {intent.donor_email} · {intent.donor_phone}
+                    </p>
                   </div>
-                  <span className="inline-flex items-center rounded-full border-2 border-teal-950 bg-amber-100 px-3 py-1 text-sm font-extrabold text-amber-900 shadow-[2px_2px_0_#1a3a38]">
+                  <Badge className="bg-amber-100 text-sm text-amber-900">
                     ${intent.amount.toFixed(2)}
-                  </span>
+                  </Badge>
                 </div>
                 {intent.message && (
-                  <p className="mt-2 text-sm italic text-stone-500">"{intent.message}"</p>
+                  <p className="mt-2 text-sm text-stone-500 italic">&quot;{intent.message}&quot;</p>
                 )}
                 <p className="mt-2 text-xs font-semibold text-stone-400">
                   {new Date(intent.created_at).toLocaleDateString('en-US', {

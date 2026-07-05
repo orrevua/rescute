@@ -1,8 +1,10 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme inline {
   --font-sans: var(--font-inter);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-ink: #1a3a38;
+  --color-cartoon-accent: #0d9488;
 }
 
 body {
@@ -11,60 +13,111 @@ body {
 
 button,
 a,
-[role="button"],
+[role='button'],
 summary {
   cursor: pointer;
 }
 
 /* ── Cartoon Design System ── */
 
-* {
-  border-color: #1a3a38;
+:root {
+  /* ink + accents */
+  --cartoon-ink: #1a3a38;
+  --cartoon-accent: #0d9488;
+  --cartoon-accent-soft: #ccfbf1;
+  --cartoon-accent-strong: #115e59;
+  /* border widths */
+  --cartoon-border: 3px; /* ring / section */
+  --cartoon-border-input: 2.5px;
+  /* radii */
+  --cartoon-radius-card: 1.5rem;
+  --cartoon-radius-section: 2rem;
+  --cartoon-radius-input: 1rem;
+  --cartoon-radius-pill: 9999px;
+  /* transitions */
+  --cartoon-ease-card: 0.15s;
+  --cartoon-ease-btn: 0.1s;
 }
+
+* {
+  border-color: var(--cartoon-ink);
+}
+
+/*
+ * Which class for which UI role:
+ * - .cartoon-section — the outermost container of a page region or a form/modal
+ *   body (largest radius, static shadow). One per region.
+ * - .cartoon-card    — a discrete content item inside a section/grid (animated
+ *   hover lift). Prefer the <Card> component which already wraps it.
+ * - .cartoon-btn     — any actionable <button>/<a role=button>/<Link> styled as a
+ *   button (pill, press animation). Never a bare `rounded-xl bg-teal-800`.
+ * - .cartoon-input   — any <input>/<textarea>/<select> (focus lifts to accent
+ *   shadow). Never a bare `rounded-xl border`.
+ * - <Badge>          — the pill badge; always import the component instead of
+ *   re-inlining the pill markup.
+ * - Ink color        — always `border-ink`/`text-ink`/`bg-ink` or
+ *   `var(--cartoon-ink)`; never `border-teal-950` and never a raw `#1a3a38`.
+ */
 
 /* Cartoon card: thick border + hard offset shadow */
 .cartoon-card {
   border: none;
-  border-radius: 1.5rem;
-  box-shadow: 0 0 0 3px #1a3a38, 5px 5px 0 #1a3a38;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-radius: var(--cartoon-radius-card);
+  box-shadow:
+    0 0 0 var(--cartoon-border) var(--cartoon-ink),
+    5px 5px 0 var(--cartoon-ink);
+  transition:
+    transform var(--cartoon-ease-card) ease,
+    box-shadow var(--cartoon-ease-card) ease;
 }
 
 .cartoon-card:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 0 0 0 3px #1a3a38, 7px 7px 0 #1a3a38;
+  box-shadow:
+    0 0 0 var(--cartoon-border) var(--cartoon-ink),
+    7px 7px 0 var(--cartoon-ink);
 }
 
 /* Cartoon button: thick border, hard shadow, press effect */
 .cartoon-btn {
   border: none;
-  border-radius: 9999px;
-  box-shadow: 0 0 0 3px #1a3a38, 4px 4px 0 #1a3a38;
+  border-radius: var(--cartoon-radius-pill);
+  box-shadow:
+    0 0 0 var(--cartoon-border) var(--cartoon-ink),
+    4px 4px 0 var(--cartoon-ink);
   font-weight: 800;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transition:
+    transform var(--cartoon-ease-btn) ease,
+    box-shadow var(--cartoon-ease-btn) ease;
 }
 
 .cartoon-btn:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 0 0 0 3px #1a3a38, 5px 5px 0 #1a3a38;
+  box-shadow:
+    0 0 0 var(--cartoon-border) var(--cartoon-ink),
+    5px 5px 0 var(--cartoon-ink);
 }
 
 .cartoon-btn:active {
   transform: translate(2px, 2px);
-  box-shadow: 0 0 0 3px #1a3a38, 1px 1px 0 #1a3a38;
+  box-shadow:
+    0 0 0 var(--cartoon-border) var(--cartoon-ink),
+    1px 1px 0 var(--cartoon-ink);
 }
 
 /* Cartoon input fields */
 .cartoon-input {
-  border: 2.5px solid #1a3a38;
-  border-radius: 1rem;
-  box-shadow: 3px 3px 0 #1a3a38;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  border: var(--cartoon-border-input) solid var(--cartoon-ink);
+  border-radius: var(--cartoon-radius-input);
+  box-shadow: 3px 3px 0 var(--cartoon-ink);
+  transition:
+    box-shadow var(--cartoon-ease-card) ease,
+    transform var(--cartoon-ease-card) ease;
 }
 
 .cartoon-input:focus {
   outline: none;
-  box-shadow: 5px 5px 0 #0d9488;
+  box-shadow: 5px 5px 0 var(--cartoon-accent);
   transform: translate(-1px, -1px);
 }
 
@@ -87,7 +140,9 @@ summary {
 
 .cat-card-wrapper:hover > .cartoon-card {
   transform: scale(1.08);
-  box-shadow: 0 0 0 3px #1a3a38, 8px 8px 0 #1a3a38;
+  box-shadow:
+    0 0 0 var(--cartoon-border) var(--cartoon-ink),
+    8px 8px 0 var(--cartoon-ink);
 }
 
 .cat-card-inner.cartoon-card:hover {
@@ -98,7 +153,10 @@ summary {
 .cat-card-wrapper:has(~ .cat-card-wrapper:hover) > .cartoon-card,
 .cat-card-wrapper:hover ~ .cat-card-wrapper > .cartoon-card {
   filter: blur(2px) brightness(0.92);
-  transition: filter 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    filter 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 /* ── Health badges: right side of card ── */
@@ -152,14 +210,14 @@ summary {
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  border: 2px solid #1a3a38;
+  border: 2px solid var(--cartoon-ink);
   padding: 0.25rem 0.65rem;
   font-size: 0.65rem;
   font-weight: 800;
   white-space: nowrap;
-  background: #ccfbf1;
-  color: #115e59;
-  box-shadow: 2px 2px 0 #1a3a38;
+  background: var(--cartoon-accent-soft);
+  color: var(--cartoon-accent-strong);
+  box-shadow: 2px 2px 0 var(--cartoon-ink);
   opacity: 0;
   transform: scale(0);
   position: relative;
@@ -190,7 +248,7 @@ summary {
   left: 50%;
   top: 0.25rem;
   border-radius: 50%;
-  background: #0d9488;
+  background: var(--cartoon-accent);
   z-index: 3;
   opacity: 0;
 }
@@ -283,7 +341,7 @@ summary {
 
 /* Cartoon section containers */
 .cartoon-section {
-  border: 3px solid #1a3a38;
-  border-radius: 2rem;
-  box-shadow: 6px 6px 0 #1a3a38;
+  border: var(--cartoon-border) solid var(--cartoon-ink);
+  border-radius: var(--cartoon-radius-section);
+  box-shadow: 6px 6px 0 var(--cartoon-ink);
 }

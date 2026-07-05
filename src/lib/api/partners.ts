@@ -24,7 +24,10 @@ export interface NegotiationActionData {
 }
 
 export type PartnerUpdateData = Partial<
-  Pick<Partner, 'name' | 'description' | 'address' | 'cep' | 'city' | 'state' | 'coupon_code' | 'discount_pct'>
+  Pick<
+    Partner,
+    'name' | 'description' | 'address' | 'cep' | 'city' | 'state' | 'coupon_code' | 'discount_pct'
+  >
 >;
 
 export async function getPartners(): Promise<Partner[]> {
@@ -47,7 +50,10 @@ export async function getNegotiations(): Promise<PartnerNegotiation[]> {
   return data;
 }
 
-export async function actOnNegotiation(id: string, payload: NegotiationActionData): Promise<PartnerNegotiation> {
+export async function actOnNegotiation(
+  id: string,
+  payload: NegotiationActionData,
+): Promise<PartnerNegotiation> {
   const { data } = await api.patch<PartnerNegotiation>(`/partners/negotiations/${id}`, payload);
   return data;
 }

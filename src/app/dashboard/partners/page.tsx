@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { DashboardNav } from '@/components/dashboard/DashboardNav';
+import { Badge } from '@/components/ui/Badge';
 import { actOnNegotiation, getNegotiations } from '@/lib/api/partners';
 import { ProtectedRoute } from '@/lib/auth/guard';
 import type { PartnerNegotiation } from '@/lib/types';
@@ -18,7 +19,9 @@ export default function PartnerNegotiationsPage() {
   const [negotiations, setNegotiations] = useState<PartnerNegotiation[]>([]);
 
   function refresh() {
-    void getNegotiations().then(setNegotiations).catch(() => {});
+    void getNegotiations()
+      .then(setNegotiations)
+      .catch(() => {});
   }
 
   useEffect(refresh, []);
@@ -45,7 +48,8 @@ export default function PartnerNegotiationsPage() {
           </Link>
           <h1 className="mt-4 text-3xl font-bold text-stone-900">Purrtner requests</h1>
           <p className="mt-2 text-stone-600">
-            Businesses that want to host their coupon with you. Accept to list them publicly, or counter their offer.
+            Businesses that want to host their coupon with you. Accept to list them publicly, or
+            counter their offer.
           </p>
           <div className="cartoon-section mt-6 bg-[#f0fdf8] p-4">
             <DashboardNav />
@@ -57,18 +61,21 @@ export default function PartnerNegotiationsPage() {
                   <div>
                     <p className="font-bold text-stone-900">{negotiation.partner.name}</p>
                     <p className="text-sm text-stone-600">
-                      {negotiation.partner.address} · {negotiation.partner.city}/{negotiation.partner.state}
+                      {negotiation.partner.address} · {negotiation.partner.city}/
+                      {negotiation.partner.state}
                     </p>
                     <p className="mt-1 text-sm text-stone-600">
                       {negotiation.contact_email} · {negotiation.contact_phone}
                     </p>
                   </div>
-                  <span className="inline-flex items-center rounded-full border-2 border-teal-950 bg-amber-100 px-3 py-1 text-sm font-extrabold text-amber-900 shadow-[2px_2px_0_#1a3a38]">
+                  <Badge className="bg-amber-100 text-sm text-amber-900">
                     ${negotiation.proposed_amount.toFixed(2)}
-                  </span>
+                  </Badge>
                 </div>
                 {negotiation.proposed_message && (
-                  <p className="mt-2 text-sm italic text-stone-500">&ldquo;{negotiation.proposed_message}&rdquo;</p>
+                  <p className="mt-2 text-sm text-stone-500 italic">
+                    &ldquo;{negotiation.proposed_message}&rdquo;
+                  </p>
                 )}
                 {negotiation.counter_amount != null && (
                   <p className="mt-2 text-sm font-semibold text-sky-800">

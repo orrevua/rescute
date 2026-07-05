@@ -1,4 +1,10 @@
-export function RescuteLogo({ className = '', height = 28 }: { className?: string; height?: number }) {
+export function RescuteLogo({
+  className = '',
+  height = 28,
+}: {
+  className?: string;
+  height?: number;
+}) {
   const width = Math.round(height * 4.2);
   return (
     <svg
@@ -17,8 +23,12 @@ export function RescuteLogo({ className = '', height = 28 }: { className?: strin
         fontSize="88"
         letterSpacing="-2"
       >
-        <tspan fill="#2d6a4f" fontWeight="400">res</tspan>
-        <tspan fill="#1a3a38" fontWeight="900">cute</tspan>
+        <tspan fill="#2d6a4f" fontWeight="400">
+          res
+        </tspan>
+        <tspan fill="#1a3a38" fontWeight="900">
+          cute
+        </tspan>
       </text>
     </svg>
   );

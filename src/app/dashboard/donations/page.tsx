@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { DashboardNav } from '@/components/dashboard/DashboardNav';
+import { Badge } from '@/components/ui/Badge';
 import { getDonations } from '@/lib/api/donations';
 import { ProtectedRoute } from '@/lib/auth/guard';
 import type { DonationPost } from '@/lib/types';
@@ -23,7 +24,10 @@ export default function DashboardDonationsPage() {
           </Link>
           <div className="mt-4 flex justify-between">
             <h1 className="text-3xl font-bold text-stone-900">Campaigns</h1>
-            <Link className="cartoon-btn border-2 bg-teal-800 px-4 py-2 font-bold text-white hover:bg-teal-700" href="/dashboard/donations/new">
+            <Link
+              className="cartoon-btn border-2 bg-teal-800 px-4 py-2 font-bold text-white hover:bg-teal-700"
+              href="/dashboard/donations/new"
+            >
               New campaign
             </Link>
           </div>
@@ -38,12 +42,18 @@ export default function DashboardDonationsPage() {
                     <h2 className="font-bold text-stone-900">{post.title}</h2>
                     <p className="text-sm text-stone-600">{post.description}</p>
                     {post.payment_link && (
-                      <p className="mt-1 text-xs font-semibold text-teal-700">Payment link configured</p>
+                      <p className="mt-1 text-xs font-semibold text-teal-700">
+                        Payment link configured
+                      </p>
                     )}
                   </div>
-                  <span className={`inline-flex items-center rounded-full border-2 border-teal-950 px-3 py-1 text-xs font-extrabold shadow-[2px_2px_0_#1a3a38] ${post.is_active ? 'bg-teal-100 text-teal-800' : 'bg-stone-200 text-stone-600'}`}>
+                  <Badge
+                    className={
+                      post.is_active ? 'bg-teal-100 text-teal-800' : 'bg-stone-200 text-stone-600'
+                    }
+                  >
                     {post.is_active ? 'Active' : 'Inactive'}
-                  </span>
+                  </Badge>
                 </div>
                 {post.target_amount && (
                   <p className="mt-2 text-sm font-semibold text-stone-500">
@@ -51,7 +61,10 @@ export default function DashboardDonationsPage() {
                   </p>
                 )}
                 <div className="mt-3">
-                  <Link className="text-sm font-bold text-teal-800 hover:underline" href={`/dashboard/donations/${post.id}/edit`}>
+                  <Link
+                    className="text-sm font-bold text-teal-800 hover:underline"
+                    href={`/dashboard/donations/${post.id}/edit`}
+                  >
                     Edit
                   </Link>
                 </div>

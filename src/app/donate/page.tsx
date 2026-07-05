@@ -12,7 +12,9 @@ export default function DonatePage() {
   const [cep, setCep] = useState('');
 
   useEffect(() => {
-    void getDonations('financial').then(setPosts).catch(() => setPosts([]));
+    void getDonations('financial')
+      .then(setPosts)
+      .catch(() => setPosts([]));
   }, []);
 
   return (
@@ -28,14 +30,18 @@ export default function DonatePage() {
               <DonationCard donation={post} key={post.id} />
             ))}
             {posts.length === 0 && (
-              <p className="cartoon-card bg-white p-6 text-stone-600">No active campaigns at the moment.</p>
+              <p className="cartoon-card bg-white p-6 text-stone-600">
+                No active campaigns at the moment.
+              </p>
             )}
           </div>
         </section>
 
         <section className="cartoon-section mt-14 bg-[#f0fdf8] p-7">
           <h2 className="text-2xl font-bold text-stone-900">Donate items</h2>
-          <p className="mt-2 text-stone-600">Food, litter, and care supplies make an immediate difference.</p>
+          <p className="mt-2 text-stone-600">
+            Food, litter, and care supplies make an immediate difference.
+          </p>
           <div className="mt-5 max-w-md">
             <CepSearch onSearch={setCep} />
             <DonationMap cep={cep} />

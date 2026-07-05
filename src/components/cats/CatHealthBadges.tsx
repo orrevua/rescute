@@ -15,9 +15,7 @@ export function CatHealthBadges({ cat }: { cat: Cat }) {
       {facts.map(([label, ok]) => (
         <Badge
           key={label as string}
-          className={
-            ok ? 'bg-teal-100 text-teal-800' : 'bg-stone-100 text-stone-600'
-          }
+          className={ok ? 'bg-teal-100 text-teal-800' : 'bg-stone-100 text-stone-600'}
         >
           {label as string}
         </Badge>

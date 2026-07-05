@@ -10,16 +10,16 @@ export default function AboutPage() {
 
         <div className="mt-8 space-y-6 text-lg leading-8 text-stone-700">
           <p>
-            Rescute connects cats in need of a home, protectors who make care
-            happen, and people ready to get involved.
+            Rescute connects cats in need of a home, protectors who make care happen, and people
+            ready to get involved.
           </p>
           <p>
-            You can meet cats for adoption, offer a foster home, support
-            campaigns, or find purrtners who strengthen the local network.
+            You can meet cats for adoption, offer a foster home, support campaigns, or find
+            purrtners who strengthen the local network.
           </p>
           <p>
-            Our commitment is simple: clear information, responsible care, and
-            more chances for every cat to find their place.
+            Our commitment is simple: clear information, responsible care, and more chances for
+            every cat to find their place.
           </p>
         </div>
       </article>

@@ -9,6 +9,7 @@ export function DonationMap({ cep }: { cep: string }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading flag must flip before the async fetch starts
     setLoading(true);
     getPartners()
       .then((all) => {
@@ -45,7 +46,10 @@ export function DonationMap({ cep }: { cep: string }) {
         <p className="font-bold text-teal-950">Nearby drop-off points{cep ? ` near ${cep}` : ''}</p>
         <p className="mt-2 text-sm text-teal-900">
           No purrtner locations found{cep ? ' in your area' : ' yet'}. Check the{' '}
-          <a href="/partners" className="font-semibold underline">purrtners page</a> for the full list.
+          <a href="/partners" className="font-semibold underline">
+            purrtners page
+          </a>{' '}
+          for the full list.
         </p>
       </div>
     );

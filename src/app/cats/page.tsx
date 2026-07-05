@@ -53,9 +53,7 @@ export default function CatsPage() {
           </div>
         </div>
 
-        {error && (
-          <p className="rounded-2xl bg-red-50 p-4 text-red-800">{error}</p>
-        )}
+        {error && <p className="rounded-2xl bg-red-50 p-4 text-red-800">{error}</p>}
 
         {loading ? (
           <p className="text-stone-600">Looking for whiskers and purrs...</p>

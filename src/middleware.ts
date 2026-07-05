@@ -8,9 +8,7 @@ export function middleware(request: NextRequest) {
   const { nextUrl } = request;
   const isLoggedIn = !!request.cookies.get('session-token')?.value;
   const isAuthRoute = AUTH_ROUTES.includes(nextUrl.pathname);
-  const isProtectedRoute = PROTECTED_ROUTES.some((route) =>
-    nextUrl.pathname.startsWith(route),
-  );
+  const isProtectedRoute = PROTECTED_ROUTES.some((route) => nextUrl.pathname.startsWith(route));
 
   if (isAuthRoute && isLoggedIn) {
     return NextResponse.redirect(new URL('/dashboard', request.url));

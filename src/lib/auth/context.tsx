@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  ReactNode,
-} from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { User, UserRole } from '../types';
 import { loginApi, registerApi, getMeApi } from '../api/auth';
 import { setTokens, clearTokens, getAccessToken } from './tokens';
@@ -43,6 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .finally(() => setLoading(false));
     } else {
       clearTokens();
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- no token means auth check is already resolved
       setLoading(false);
     }
   }, []);

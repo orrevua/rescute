@@ -20,10 +20,21 @@ export async function getCat(id: string): Promise<Cat> {
   return data;
 }
 
-export async function getMyCats(): Promise<Cat[]> { const { data } = await api.get<Cat[]>('/cats/mine'); return data; }
-export async function createCat(data: Record<string, unknown>): Promise<Cat> { const { data: response } = await api.post<Cat>('/cats', data); return response; }
-export async function updateCat(id: string, data: Record<string, unknown>): Promise<Cat> { const { data: response } = await api.patch<Cat>(`/cats/${id}`, data); return response; }
-export async function deleteCat(id: string): Promise<void> { await api.delete(`/cats/${id}`); }
+export async function getMyCats(): Promise<Cat[]> {
+  const { data } = await api.get<Cat[]>('/cats/mine');
+  return data;
+}
+export async function createCat(data: Record<string, unknown>): Promise<Cat> {
+  const { data: response } = await api.post<Cat>('/cats', data);
+  return response;
+}
+export async function updateCat(id: string, data: Record<string, unknown>): Promise<Cat> {
+  const { data: response } = await api.patch<Cat>(`/cats/${id}`, data);
+  return response;
+}
+export async function deleteCat(id: string): Promise<void> {
+  await api.delete(`/cats/${id}`);
+}
 
 export async function uploadPhoto(file: File): Promise<string> {
   const form = new FormData();
