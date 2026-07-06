@@ -6,7 +6,7 @@ const PROTECTED_ROUTES = ['/dashboard', '/foster'];
 
 export function middleware(request: NextRequest) {
   const { nextUrl } = request;
-  const isLoggedIn = !!request.cookies.get('session-token')?.value;
+  const isLoggedIn = !!request.cookies.get('refresh-token')?.value;
   const isAuthRoute = AUTH_ROUTES.includes(nextUrl.pathname);
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => nextUrl.pathname.startsWith(route));
 

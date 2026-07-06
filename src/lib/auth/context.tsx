@@ -2,8 +2,8 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { User, UserRole } from '../types';
-import { loginApi, registerApi, getMeApi } from '../api/auth';
-import { setTokens, clearTokens, getAccessToken } from './tokens';
+import { getMeApi } from '../api/auth';
+import { getAccessToken, setAccessToken, clearAccessToken } from './tokens';
 
 interface AuthContextType {
   user: User | null;
@@ -20,31 +20,36 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+async function refreshSession(): Promise<boolean> {
+  const res = await fetch('/api/auth/refresh', { method: 'POST' });
+  if (!res.ok) return false;
+  const { access_token } = await res.json();
+  setAccessToken(access_token);
+  return true;
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = getAccessToken();
-    if (token) {
-      getMeApi()
-        .then(setUser)
-        .catch(() => {
-          clearTokens();
-          window.location.replace('/login');
-        })
-        .finally(() => setLoading(false));
-    } else {
-      clearTokens();
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- no token means auth check is already resolved
-      setLoading(false);
-    }
+    refreshSession()
+      .then((ok) => (ok ? getMeApi() : null))
+      .then((me) => setUser(me))
+      .catch(() => clearAccessToken())
+      .finally(() => setLoading(false));
   }, []);
 
   const login = useCallback(async (email: string, password: string) => {
-    const res = await loginApi(email, password);
-    setTokens(res.access_token, res.refresh_token);
-    setUser(res.user);
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!res.ok) throw new Error('Login failed');
+    const { user: authUser, access_token } = await res.json();
+    setAccessToken(access_token);
+    setUser(authUser);
   }, []);
 
   const register = useCallback(
@@ -54,15 +59,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       role: UserRole,
       profileData: Record<string, unknown>,
     ) => {
-      const res = await registerApi(email, password, role, profileData);
-      setTokens(res.access_token, res.refresh_token);
-      setUser(res.user);
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, role, ...profileData }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.detail ?? 'Error creating account.');
+      }
+      const { user: authUser, access_token } = await res.json();
+      setAccessToken(access_token);
+      setUser(authUser);
     },
     [],
   );
 
-  const logout = useCallback(() => {
-    clearTokens();
+  const logout = useCallback(async () => {
+    const token = getAccessToken();
+    await fetch('/api/auth/logout', {
+      method: 'POST',
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    }).catch(() => {});
+    clearAccessToken();
     setUser(null);
   }, []);
 
