@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Cat } from '@/lib/types';
 import { resolvePhotoUrl } from '@/lib/api/client';
+import { placeholderGradient } from '@/lib/catPlaceholder';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { CardHealthBadges } from '@/components/cats/CardHealthBadges';
@@ -30,7 +31,10 @@ export function CatCard({ cat }: { cat: Cat }) {
             )}
           </div>
         ) : (
-          <div className="flex h-48 items-center justify-center bg-[radial-gradient(circle_at_35%_30%,#fef3c7_0,transparent_30%),linear-gradient(135deg,#b8d9d0,#e7f0ed)] text-7xl transition duration-300 group-hover:scale-105">
+          <div
+            className="flex h-48 items-center justify-center text-7xl transition duration-300 group-hover:scale-105"
+            style={{ backgroundImage: placeholderGradient(cat.name) }}
+          >
             🐈
           </div>
         )}

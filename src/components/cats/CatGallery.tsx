@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { resolvePhotoUrl } from '@/lib/api/client';
+import { placeholderGradient } from '@/lib/catPlaceholder';
 
 export function CatGallery({ photos, name }: { photos: string[]; name: string }) {
   const [selected, setSelected] = useState(0);
@@ -10,7 +11,8 @@ export function CatGallery({ photos, name }: { photos: string[]; name: string })
   if (photos.length === 0) {
     return (
       <div
-        className="grid min-h-72 place-items-center overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_30%_20%,#f9d9bb_0,transparent_25%),linear-gradient(145deg,#244c49,#7fb9ac)] text-center text-8xl"
+        className="grid min-h-72 place-items-center overflow-hidden rounded-[2rem] text-center text-8xl"
+        style={{ backgroundImage: placeholderGradient(name) }}
         aria-label={`${name}'s gallery`}
       >
         🐈
