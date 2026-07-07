@@ -5,7 +5,8 @@ Project documentation for **Rescute** — a cat adoption and donation platform. 
 ## Contents
 
 - **[SUBMISSION.md](SUBMISSION.md)** — hackathon submission checklist and requirement mapping.
-- **[security/2026-07-06-full-audit.md](security/2026-07-06-full-audit.md)** — full-platform security audit (frontend, backend, deploy config). Every finding was remediated before submission; confirmed clean areas include SQL injection, IDOR, and prompt injection.
+
+A full-platform security audit (frontend, backend, deploy config) was performed and every finding remediated before submission — hardening includes typed JWTs with revocation, httpOnly-cookie auth, rate limiting, CSP/security headers, upload content validation, and dependency-audit CI in both repos.
 
 ## Process
 
