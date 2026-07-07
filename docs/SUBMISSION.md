@@ -16,7 +16,7 @@ Submission period: June 24 – July 7, 2026. All code in both repos was written 
 
 - [x] **Live URLs**: added to both READMEs — https://rescute.vercel.app and https://rescute-api.onrender.com.
 - [x] **Neon migration + seed**: the API now runs `alembic upgrade head` and ensures the judge demo account on startup (rescute-api `46d413c`). Verified live: login with the judge account returns 200 through both the API and the Vercel frontend (httpOnly refresh cookie set).
-- [ ] **Demo video**: English narration (or English subtitles), no third-party music/trademarks, shows the judge walkthrough from the README.
+- [x] **Demo video**: English narration (or English subtitles), no third-party music/trademarks, shows the judge walkthrough from the README.
 - [ ] **Kiro Track**: only opt in if Kiro was actually used — this project has no `.kiro` folder (it was built with a Claude Code Architect/Implementer agent workflow, documented in `docs/` specs and handoffs). Do **not** claim Kiro usage.
 
 ## Submission form content (suggested)
