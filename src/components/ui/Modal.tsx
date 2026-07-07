@@ -41,7 +41,7 @@ export function Modal({
           className="pointer-events-none absolute bottom-4 left-5 text-teal-800 opacity-15"
           style={{ transform: 'rotate(22deg)' }}
         />
-        <div className="relative max-h-[calc(90vh-4rem)] overflow-y-auto pt-2 pr-2">
+        <div className="relative max-h-[calc(90vh-4rem)] overflow-y-auto p-2">
           <div className="mb-5 flex items-start justify-between gap-4">
             <h2 id="modal-title" className="text-2xl font-black text-stone-900">
               {title}
