@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rescute 🐾
 
-## Getting Started
+**Rescute** is a cat adoption and donation platform that connects independent cat protectors (NGOs, shelters, and rescuers) with adopters, foster homes ("lar temporário"), and donors — plus an AI-powered cat-care assistant for anyone with questions about caring for a cat.
 
-First, run the development server:
+> **Note for judges:** the product UI is in Brazilian Portuguese (pt-BR), the language of its target audience. All documentation, code, and testing instructions are in English. Full testing instructions are below.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Backend repository:** [orrevua/rescute-api](https://github.com/orrevua/rescute-api) (FastAPI + PostgreSQL)
+- **This repository:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4
+
+## What it does
+
+Cat protectors in Brazil are mostly independent volunteers with no tooling: cats are advertised in WhatsApp statuses, donations tracked in notebooks. Rescute gives them one place to:
+
+- **Publish cats for adoption** with photos, health status (vaccinated/dewormed/neutered), and personality traits (sociability, energy, playfulness)
+- **Receive adoption and foster-home applications** from interested visitors
+- **Post donation needs** (financial or supplies) and collect public pledges
+- **List partner clinics and stores** offering discounts to adopters
+- **Track everything** from a protector dashboard
+
+Visitors can browse and filter cats, apply to adopt or foster, pledge donations, and ask the **AI cat-care assistant** anything about feline care — no account needed to browse or ask questions.
+
+### Access levels
+
+| Role | What they can do |
+|---|---|
+| Public visitor | Browse cats, view partners and donation posts, pledge donations, use the AI care chat |
+| Authenticated user | Apply to adopt or foster a cat |
+| Protector | Everything above + manage cats, donation posts, partners, applications, and dashboard |
+
+## Architecture
+
+```
+┌────────────────────┐        ┌─────────────────────┐        ┌────────────┐
+│  Next.js frontend   │  REST  │  FastAPI backend     │  SQL   │ PostgreSQL │
+│  (Vercel)           │ ─────► │  (Render, hexagonal  │ ─────► │ (Neon)     │
+│  App Router, RSC    │        │  ports & adapters)   │        └────────────┘
+│  Route Handlers     │        │                      │  HTTPS ┌────────────┐
+│  (httpOnly cookies) │        │  AI care service ────┼──────► │ OpenAI API │
+└────────────────────┘        └─────────────────────┘        └────────────┘
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Auth:** JWT access token kept in memory only; httpOnly refresh cookie set by Next.js Route Handlers (`src/app/api/auth/*`) that proxy the backend — no tokens in `localStorage`. Server-side revocation via token versioning.
+- **Security:** rate limiting, security headers + CSP on both tiers, upload magic-byte validation, dependency-audit CI on both repos. A full security audit and remediation was performed (see `docs/` in each repo).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Prerequisites: Node.js 22+, Python 3.12+, Docker (for Postgres), Git.
 
-## Learn More
+### 1. Backend
 
-To learn more about Next.js, take a look at the following resources:
+Follow the [rescute-api README](https://github.com/orrevua/rescute-api#local-setup) — in short: start Postgres via Docker, `pip install -r requirements.txt`, create `.env` from `.env.example`, run `alembic upgrade head` and `python -m scripts.seed`, then `uvicorn app.main:app --reload --port 8000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Frontend (this repo)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git clone https://github.com/orrevua/rescute.git
+cd rescute
+npm install
 
-## Deploy on Vercel
+# Point at the local backend
+echo NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api/v1 > .env.local
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open http://localhost:3000.
+
+## Testing instructions (for judges)
+
+**Test account** (created by the backend seed script — a protector managing a cat named Luna):
+
+- **Email:** `protetor@rescute.app`
+- **Password:** `Rescute123!`
+
+Suggested walkthrough:
+
+1. **Home page** — browse without logging in; open the cat listing ("Adotar") and view Luna's profile with health/personality details.
+2. **AI care chat** — ask a cat-care question (e.g. "Com que frequência devo vacinar meu gato?" or in English — the assistant answers either way). No login required.
+3. **Donations** — open the donation posts ("Doar") and make a pledge to "Ração para o inverno".
+4. **Register a new account** — sign up as a regular user and submit an adoption or foster application for Luna.
+5. **Protector experience** — log in with the test account above; visit the dashboard, add a new cat with a photo upload, create a donation post, and review incoming applications.
+6. Log out ("Sair") — this revokes the refresh token server-side.
+
+Everything is free to test; no payment gateway exists (donation amounts are public pledges, not processed charges).
+
+## Repository layout
+
+```
+src/
+  app/           # App Router pages + API Route Handlers (auth cookie proxy)
+  components/    # UI components (Tailwind 4)
+  lib/
+    api/         # axios client with silent-refresh interceptor
+    auth/        # auth context + in-memory token store
+  middleware.ts  # route gating via refresh-token cookie
+```
+
+## Scripts
+
+- `npm run dev` — development server
+- `npm run build` / `npm start` — production build and serve
+- `npm run lint` — ESLint
+- `npx tsc --noEmit` — type check
+
+## Team
+
+Built for the hackathon (June 24 – July 7, 2026) by **Felipe França** (development) and **Xuliana** (product design — all screens and feature flows). All code was written during the submission period.
