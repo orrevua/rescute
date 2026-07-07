@@ -7,7 +7,7 @@ Submission period: June 24 – July 7, 2026. All code in both repos was written 
 | Requirement | Where it's satisfied |
 |---|---|
 | Installable & runnable consistently | README "Run locally" in both repos (Docker Postgres, `.env.example`, migrations, seed) + deployed app (Vercel + Render) |
-| English submission materials | Both READMEs, this doc, and all code/comments are English; UI is pt-BR by design (documented in README) |
+| English submission materials | UI, both READMEs, this doc, and all code/comments are in English |
 | Testing instructions + credentials | README → "Testing instructions (for judges)"; seeded account `protetor@rescute.app` / `Rescute123!` |
 | Free to access/test | No payment gateway; public deploy is free to use; local setup uses only free tooling |
 | No trademarks/copyrighted music in video | ⚠️ Check the demo video before upload |

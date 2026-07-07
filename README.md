@@ -2,8 +2,6 @@
 
 **Rescute** is a cat adoption and donation platform that connects independent cat protectors (NGOs, shelters, and rescuers) with adopters, foster homes ("lar temporário"), and donors — plus an AI-powered cat-care assistant for anyone with questions about caring for a cat.
 
-> **Note for judges:** the product UI is in Brazilian Portuguese (pt-BR), the language of its target audience. All documentation, code, and testing instructions are in English. Full testing instructions are below.
-
 - **Live app:** https://rescute.vercel.app
 - **Live API (Swagger docs):** https://rescute-api.onrender.com/docs
 - **Backend repository:** [orrevua/rescute-api](https://github.com/orrevua/rescute-api) (FastAPI + PostgreSQL)
@@ -80,12 +78,12 @@ Test on the live app at **https://rescute.vercel.app** (no setup needed) or loca
 
 Suggested walkthrough:
 
-1. **Home page** — browse without logging in; open the cat listing ("Adotar") and view Luna's profile with health/personality details.
-2. **AI care chat** — ask a cat-care question (e.g. "Com que frequência devo vacinar meu gato?" or in English — the assistant answers either way). No login required.
-3. **Donations** — open the donation posts ("Doar") and make a pledge to "Ração para o inverno".
-4. **Register a new account** — sign up as a regular user and submit an adoption or foster application for Luna.
+1. **Home page** — browse without logging in; open the cat listing and view a cat's profile with health and personality details.
+2. **AI care chat** — ask any cat-care question (e.g. "How often should I vaccinate my cat?"). No login required.
+3. **Donations** — open the donation posts and make a pledge to one of them.
+4. **Register a new account** — sign up as a regular user and submit an adoption or foster application for a cat.
 5. **Protector experience** — log in with the test account above; visit the dashboard, add a new cat with a photo upload, create a donation post, and review incoming applications.
-6. Log out ("Sair") — this revokes the refresh token server-side.
+6. **Log out** — this revokes the refresh token server-side.
 
 Everything is free to test; no payment gateway exists (donation amounts are public pledges, not processed charges).
 
