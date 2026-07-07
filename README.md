@@ -11,7 +11,7 @@
 
 ## What it does
 
-Cat protectors in Brazil are mostly independent volunteers with no tooling: cats are advertised in WhatsApp statuses, donations tracked in notebooks. Rescute gives them one place to:
+Cat protectors in Brazil are mostly independent volunteers with no tooling: cats are advertised in WhatsApp statuses and Instagram posts, donations tracked in notebooks. Rescute gives them one place to:
 
 - **Publish cats for adoption** with photos, health status (vaccinated/dewormed/neutered), and personality traits (sociability, energy, playfulness)
 - **Receive adoption and foster-home applications** from interested visitors
