@@ -71,10 +71,12 @@ Open http://localhost:3000.
 
 Test on the live app at **https://rescute.vercel.app** (no setup needed) or locally via the steps above.
 
-**Test account** (created by the backend seed script — a protector managing a cat named Luna):
+**Test accounts** (created by the backend seed script; both use password `Rescute123!`):
 
-- **Email:** `protetor@rescute.app`
-- **Password:** `Rescute123!`
+- **Protector:** `protetor@rescute.app` — manages the demo cats, donation posts, and incoming applications
+- **Foster:** `foster@rescute.app` — a regular user with a foster profile
+
+The seed data covers varied cases: a kitten with an incomplete vaccine record, a senior cat, FIV+ and FeLV+ cats with health needs, a shy semi-feral cat, cats in different states (SP/RJ), and donation posts in funded, unfunded, and supplies-only states.
 
 Suggested walkthrough:
 
