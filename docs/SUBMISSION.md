@@ -14,8 +14,8 @@ Submission period: June 24 – July 7, 2026. All code in both repos was written 
 
 ## Before submitting — fill in / verify
 
-- [ ] **Live URLs**: add the deployed Vercel URL and Render API URL to both READMEs (currently local-setup only).
-- [ ] **Neon migration**: run `alembic upgrade head` against the production DB *before* deploying the latest backend (the new `token_version` column is required for login).
+- [x] **Live URLs**: added to both READMEs — https://rescute.vercel.app and https://rescute-api.onrender.com.
+- [ ] **Neon migration**: run `alembic upgrade head` against the production DB — **login on the live API currently returns 500**, consistent with the missing `token_version` column.
 - [ ] **Seed the production DB** (`python -m scripts.seed` against Neon) so the judge test account exists in the live app.
 - [ ] **Verify Render env vars**: `ENVIRONMENT=production`, `FRONTEND_URL=<vercel url>`, `AI_PROVIDER_KEY` set.
 - [ ] **Demo video**: English narration (or English subtitles), no third-party music/trademarks, shows the judge walkthrough from the README.
