@@ -4,8 +4,12 @@
 
 > **Note for judges:** the product UI is in Brazilian Portuguese (pt-BR), the language of its target audience. All documentation, code, and testing instructions are in English. Full testing instructions are below.
 
+- **Live app:** https://rescute.vercel.app
+- **Live API (Swagger docs):** https://rescute-api.onrender.com/docs
 - **Backend repository:** [orrevua/rescute-api](https://github.com/orrevua/rescute-api) (FastAPI + PostgreSQL)
 - **This repository:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4
+
+> The API is hosted on Render's free tier — the first request after idle may take ~1 minute to cold-start.
 
 ## What it does
 
@@ -66,6 +70,8 @@ npm run dev
 Open http://localhost:3000.
 
 ## Testing instructions (for judges)
+
+Test on the live app at **https://rescute.vercel.app** (no setup needed) or locally via the steps above.
 
 **Test account** (created by the backend seed script — a protector managing a cat named Luna):
 
