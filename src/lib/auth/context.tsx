@@ -20,7 +20,15 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+function hasSessionHint(): boolean {
+  return document.cookie.split('; ').some((c) => c.startsWith('has-session='));
+}
+
 async function refreshSession(): Promise<boolean> {
+  // The refresh token is httpOnly (unreadable here), so a JS-readable hint
+  // cookie set alongside it tells us whether a refresh attempt is worthwhile —
+  // skipping the guaranteed 401 on anonymous page loads.
+  if (!hasSessionHint()) return false;
   const res = await fetch('/api/auth/refresh', { method: 'POST' });
   if (!res.ok) return false;
   const { access_token } = await res.json();

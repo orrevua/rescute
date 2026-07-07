@@ -4,7 +4,7 @@ import { AuthProvider } from '@/lib/auth/context';
 import { Footer } from '@/components/ui/Footer';
 import { Navbar } from '@/components/ui/Navbar';
 import './globals.css';
-const inter = Inter({ variable: '--font-inter', subsets: ['latin'] });
+const inter = Inter({ variable: '--font-inter', subsets: ['latin'], preload: false });
 export const metadata: Metadata = { title: 'Rescute', description: 'Cat adoption platform' };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

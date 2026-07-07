@@ -4,6 +4,9 @@ import type { NextRequest } from 'next/server';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const REFRESH_COOKIE = 'refresh-token';
+// JS-readable hint that a session exists, so the client can skip the silent
+// refresh on anonymous page loads. Carries no token — presence only.
+export const SESSION_HINT_COOKIE = 'has-session';
 
 const REFRESH_MAX_AGE = 60 * 60 * 24 * 7;
 
@@ -14,12 +17,16 @@ const cookieOptions = {
   path: '/',
 } as const;
 
+const hintOptions = { ...cookieOptions, httpOnly: false } as const;
+
 export function setRefreshCookie(response: NextResponse, token: string): void {
   response.cookies.set(REFRESH_COOKIE, token, { ...cookieOptions, maxAge: REFRESH_MAX_AGE });
+  response.cookies.set(SESSION_HINT_COOKIE, '1', { ...hintOptions, maxAge: REFRESH_MAX_AGE });
 }
 
 export function clearRefreshCookie(response: NextResponse): void {
   response.cookies.set(REFRESH_COOKIE, '', { ...cookieOptions, maxAge: 0 });
+  response.cookies.set(SESSION_HINT_COOKIE, '', { ...hintOptions, maxAge: 0 });
 }
 
 export async function proxyCredentials(request: NextRequest, backendPath: string): Promise<NextResponse> {
